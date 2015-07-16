@@ -203,7 +203,7 @@ var miGetUtms = function() {
 	if (has_values) {
 
 		// populate form handler
-
+/*
 		jQuery('input[name=first-source]').val(first_source);
 		jQuery('input[name=first-medium]').val(first_medium);
 		jQuery('input[name=first-term]').val(first_term);
@@ -227,7 +227,7 @@ var miGetUtms = function() {
 				jQuery(this).attr('src', iframeurl+questamp+'First_Source='+first_source+'&First_Medium='+first_medium+'&First_Term='+first_term+'&First_Content='+first_content+'&First_Campaign='+first_campaign+'&Last_Source='+last_source+'&Last_Medium='+last_medium+'&Last_Term='+last_term+'&Last_Content='+last_content+'&Last_Campaign='+last_campaign);
 			}
 		});
-
+*/
 	}
 
 };
