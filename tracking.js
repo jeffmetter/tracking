@@ -27,7 +27,7 @@ var miSetCookie = function(cname, cvalue) {
 	var time = now.getTime();
 	time += 180*24*60*60*1000;
 	now.setTime(time);
-	document.cookie = cname + '=' + cvalue + '; expires=' + now.toUTCString() + '; domain=.workstride.com; path=/';
+	document.cookie = cname + '=' + cvalue + '; expires=' + now.toUTCString() + '; domain=' + mi_tracking_url + '; path=/';
 }
 
 var miGetCookie = function(cname) {
@@ -110,7 +110,7 @@ var miGetUtms = function() {
 
 		new_values = true;
 
-	} else if (referrer_source && referrer_source.indexOf('.workstride.com') == -1) {
+	} else if (referrer_source && referrer_source.indexOf(mi_tracking_url) == -1) {
 
 		track_source = referrer_source;
 		track_medium = '-';
@@ -120,7 +120,7 @@ var miGetUtms = function() {
 
 		new_values = true;
 
-	} else if (referrer_source.indexOf('.workstride.com') == -1) {
+	} else if (referrer_source.indexOf(mi_tracking_url) == -1) {
 
 		track_source = 'Web Form';
 		track_medium = '-';
@@ -220,7 +220,7 @@ var miGetUtms = function() {
 		jQuery('iframe').each(function() {
 			var iframeurl = jQuery(this).attr('src');
 			var questamp = "?";
-			if (iframeurl && iframeurl.indexOf("go.workstride.com") > -1) {
+			if (iframeurl && iframeurl.indexOf(mi_pardot_url) > -1) {
 				if (iframeurl.indexOf("?") > -1) {
 					questamp = "&";
 				}
@@ -232,22 +232,5 @@ var miGetUtms = function() {
 
 };
 
-jQuery(document).ready(function() {
-
-	miGetUtms();
-	miRemoveUtms();
-
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
+miGetUtms();
+miRemoveUtms();
