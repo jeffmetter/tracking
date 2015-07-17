@@ -2,7 +2,7 @@
 <html lang="en-us">
 <head>
 <meta charset="UTF-8">
-<title>MI Digital Agency Tracking  </title>
+<title>MI Digital Agency Tracking</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
@@ -27,14 +27,29 @@ MI Digital Agency Tracking
 
 <script>
 
-var mi_tracking_url = '.midigitalagency.com';
-var mi_pardot_url = 'go.midigitalagency.com';
-
 (function(){
+
+	var domain = '.midigitalagency.com';
+	var pardot = 'go.midigitalagency.com';
+
+	var fs = 'first-source';
+	var fm = 'first-medium';
+	var ft = 'first-term';
+	var fc = 'first-content';
+	var fn = 'first-campaign';
+
+	var ls = 'last-source';
+	var lm = 'last-medium';
+	var lt = 'last-term';
+	var lc = 'last-content';
+	var ln = 'last-campaign';
 
 	s = document.createElement('script');
 	s.src = '//tracking.midigitalagency.com/tracking.js';
 	document.body.appendChild(s);
+
+	miGetUtms(domain, pardot, fs, fm, ft, fc, fn, ls, lm, lt, lc, ln);
+	miRemoveUtms();
 
 })();
 

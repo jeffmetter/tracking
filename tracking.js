@@ -27,7 +27,7 @@ var miSetCookie = function(cname, cvalue) {
 	var time = now.getTime();
 	time += 180*24*60*60*1000;
 	now.setTime(time);
-	document.cookie = cname + "=" + cvalue + "; expires=" + now.toUTCString() + "; domain=" + mi_tracking_url + "; path=/";
+	document.cookie = cname + "=" + cvalue + "; expires=" + now.toUTCString() + "; domain=" + tracking_domain + "; path=/";
 }
 
 var miGetCookie = function(cname) {
@@ -51,7 +51,7 @@ var miRemoveUtms = function() {
 	};
 };
 
-var miGetUtms = function() {
+var miGetUtms = function(tracking_domain, pardot_url, fs_name, fm_name, ft_name, fc_name, fn_name, ls_name, lm_name, lt_name, lc_name, ln_name) {
 
 	var referrer_source = document.referrer;
 
@@ -110,7 +110,7 @@ var miGetUtms = function() {
 
 		new_values = true;
 
-	} else if (referrer_source && referrer_source.indexOf(mi_tracking_url) == -1) {
+	} else if (referrer_source && referrer_source.indexOf(tracking_domain) == -1) {
 
 		track_source = referrer_source;
 		track_medium = "-";
@@ -120,7 +120,7 @@ var miGetUtms = function() {
 
 		new_values = true;
 
-	} else if (referrer_source.indexOf(mi_tracking_url) == -1) {
+	} else if (referrer_source.indexOf(tracking_domain) == -1) {
 
 		track_source = "Web Form";
 		track_medium = "-";
@@ -210,7 +210,17 @@ var miGetUtms = function() {
 			}
 		}
 
-		miSetInputValue("first-source", first_source);
+		miSetInputValue(fs_name, first_source);
+		miSetInputValue(fm_name, first_medium);
+		miSetInputValue(ft_name, first_term);
+		miSetInputValue(fc_name, first_content);
+		miSetInputValue(fn_name, first_campaign);
+
+		miSetInputValue(ls_name, last_source);
+		miSetInputValue(lm_name, last_medium);
+		miSetInputValue(lt_name, last_term);
+		miSetInputValue(lc_name, last_content);
+		miSetInputValue(ln_name, last_campaign);
 
 
 
@@ -235,7 +245,7 @@ var miGetUtms = function() {
 		jQuery("iframe").each(function() {
 			var iframeurl = jQuery(this).attr("src");
 			var questamp = "?";
-			if (iframeurl && iframeurl.indexOf(mi_pardot_url) > -1) {
+			if (iframeurl && iframeurl.indexOf(pardot_url) > -1) {
 				if (iframeurl.indexOf("?") > -1) {
 					questamp = "&";
 				}
@@ -247,5 +257,4 @@ var miGetUtms = function() {
 
 };
 
-miGetUtms();
-miRemoveUtms();
+
