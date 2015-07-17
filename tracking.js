@@ -2,7 +2,7 @@
 // tracking.js v3.0 | midigitalagency.com
 /////////////////////////////////////////////////////////
 
-var miGetHashVariable = function(variable) {
+function miGetHashVariable(variable) {
 	var query = window.location.hash.substring(1);
 	var vars = query.split("&");
 	for (var i=0;i<vars.length;i++) {
@@ -12,7 +12,7 @@ var miGetHashVariable = function(variable) {
 	return(false);
 }
 
-var miGetQueryVariable = function(variable) {
+function miGetQueryVariable(variable) {
 	var query = window.location.search.substring(1);
 	var vars = query.split("&");
 	for (var i=0;i<vars.length;i++) {
@@ -22,7 +22,7 @@ var miGetQueryVariable = function(variable) {
 	return(false);
 }
 
-var miSetCookie = function(cname, cvalue) {
+function miSetCookie(cname, cvalue) {
 	var now = new Date();
 	var time = now.getTime();
 	time += 180*24*60*60*1000;
@@ -30,7 +30,7 @@ var miSetCookie = function(cname, cvalue) {
 	document.cookie = cname + "=" + cvalue + "; expires=" + now.toUTCString() + "; domain=" + tracking_domain + "; path=/";
 }
 
-var miGetCookie = function(cname) {
+function miGetCookie(cname) {
 	var name = cname + "=";
 	var ca = document.cookie.split(";");
 	for (var i=0; i<ca.length; i++) {
@@ -40,7 +40,7 @@ var miGetCookie = function(cname) {
 	return "";
 }
 
-var miRemoveUtms = function() {
+function miRemoveUtms() {
 	var l = window.location;
 	if (l.hash.indexOf("utm") != -1) {
 		if (window.history.replaceState) {
@@ -51,7 +51,7 @@ var miRemoveUtms = function() {
 	};
 };
 
-var miGetUtms = function(tracking_domain, pardot_url, fs_name, fm_name, ft_name, fc_name, fn_name, ls_name, lm_name, lt_name, lc_name, ln_name) {
+function miGetUtms(tracking_domain, pardot_url, fs_name, fm_name, ft_name, fc_name, fn_name, ls_name, lm_name, lt_name, lc_name, ln_name) {
 
 	var referrer_source = document.referrer;
 
