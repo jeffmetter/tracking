@@ -51,7 +51,10 @@ function miRemoveUtms() {
 	};
 };
 
-function miGetUtms(tracking_domain, pardot_url, fs_name, fm_name, ft_name, fc_name, fn_name, ls_name, lm_name, lt_name, lc_name, ln_name) {
+
+
+
+(function () {
 
 	var referrer_source = document.referrer;
 
@@ -210,35 +213,23 @@ function miGetUtms(tracking_domain, pardot_url, fs_name, fm_name, ft_name, fc_na
 			}
 		}
 
-		miSetInputValue(fs_name, first_source);
-		miSetInputValue(fm_name, first_medium);
-		miSetInputValue(ft_name, first_term);
-		miSetInputValue(fc_name, first_content);
-		miSetInputValue(fn_name, first_campaign);
+		miSetInputValue(fs, first_source);
+		miSetInputValue(fm, first_medium);
+		miSetInputValue(ft, first_term);
+		miSetInputValue(fc, first_content);
+		miSetInputValue(fn, first_campaign);
 
-		miSetInputValue(ls_name, last_source);
-		miSetInputValue(lm_name, last_medium);
-		miSetInputValue(lt_name, last_term);
-		miSetInputValue(lc_name, last_content);
-		miSetInputValue(ln_name, last_campaign);
-
-
+		miSetInputValue(ls, last_source);
+		miSetInputValue(lm, last_medium);
+		miSetInputValue(lt, last_term);
+		miSetInputValue(lc, last_content);
+		miSetInputValue(ln, last_campaign);
 
 
 
 
 		// populate form handler
-/*
-		jQuery("input[name=first-source]").val(first_source);
-		jQuery("input[name=first-medium]").val(first_medium);
-		jQuery("input[name=first-term]").val(first_term);
-		jQuery("input[name=first-content]").val(first_content);
-		jQuery("input[name=first-campaign]").val(first_campaign);
-		jQuery("input[name=last-source]").val(last_source);
-		jQuery("input[name=last-medium]").val(last_medium);
-		jQuery("input[name=last-term]").val(last_term);
-		jQuery("input[name=last-content]").val(last_content);
-		jQuery("input[name=last-campaign]").val(last_campaign);
+		/*
 
 		// append to pardot iframe url
 
@@ -252,9 +243,12 @@ function miGetUtms(tracking_domain, pardot_url, fs_name, fm_name, ft_name, fc_na
 				jQuery(this).attr("src", iframeurl+questamp+"First_Source="+first_source+"&First_Medium="+first_medium+"&First_Term="+first_term+"&First_Content="+first_content+"&First_Campaign="+first_campaign+"&Last_Source="+last_source+"&Last_Medium="+last_medium+"&Last_Term="+last_term+"&Last_Content="+last_content+"&Last_Campaign="+last_campaign);
 			}
 		});
-*/
+		*/
+
 	}
 
-};
+	miRemoveUtms();
+
+})(); 
 
 
