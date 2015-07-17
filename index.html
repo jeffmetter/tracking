@@ -27,6 +27,10 @@ MI Digital Agency Tracking
 
 <script>
 
+
+
+(function(){
+
 	var domain = '.midigitalagency.com';
 	var pardot = 'go.midigitalagency.com';
 
@@ -42,12 +46,13 @@ MI Digital Agency Tracking
 	var lc = 'last-content';
 	var ln = 'last-campaign';
 
-(function(){
-
 	s = document.createElement('script');
 	s.async = 1;
 	s.src = '//tracking.midigitalagency.com/tracking.js';
 	document.body.appendChild(s);
+
+	miGetUtms(domain, pardot, fs, fm, ft, fc, fn, ls, lm, lt, lc, ln);
+	miRemoveUtms();
 
 })();
 
