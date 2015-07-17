@@ -257,4 +257,5 @@ var miGetUtms = function(tracking_domain, pardot_url, fs_name, fm_name, ft_name,
 
 };
 
-
+	miGetUtms(domain, pardot, fs, fm, ft, fc, fn, ls, lm, lt, lc, ln);
+	miRemoveUtms();
