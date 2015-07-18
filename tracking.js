@@ -49,12 +49,12 @@ function miRemoveUtms() {
 			l.hash = "";
 		}
 	};
-};
+}
 
 
 
 
-(function () {
+function miTrackRefferal() {
 
 	var referrer_source = document.referrer;
 
@@ -249,6 +249,6 @@ function miRemoveUtms() {
 
 	miRemoveUtms();
 
-})(); 
+}
 
 
