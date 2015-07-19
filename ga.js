@@ -16,14 +16,6 @@
   ga(miRemoveUtms);
 
 
-
-
-
-
-
-  
-
-
 (function() {
     var aa = encodeURIComponent,
         f = window,

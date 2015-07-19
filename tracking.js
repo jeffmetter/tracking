@@ -20,12 +20,12 @@
 		return(false);
 	}
 
-	function setCookie(cname, cvalue) {
+	function setCookie(cdomain, cname, cvalue) {
 		var now = new Date();
 		var time = now.getTime();
 		time += 180*24*60*60*1000;
 		now.setTime(time);
-		document.cookie = cname + "=" + cvalue + "; expires=" + now.toUTCString() + "; domain=" + mi_td + "; path=/";
+		document.cookie = cname + "=" + cvalue + "; expires=" + now.toUTCString() + "; domain=" + cdomain + "; path=/";
 	}
 
 	function getCookie(cname) {
@@ -140,11 +140,11 @@
 		var track_lc = new_c;
 		var track_ln = new_n;
 
-		setCookie("mi_last_source", new_s);
-		setCookie("mi_last_medium", new_m);
-		setCookie("mi_last_term", new_t);
-		setCookie("mi_last_content", new_c);
-		setCookie("mi_last_campaign", new_n);
+		setCookie(mi_td, "mi_last_source", new_s);
+		setCookie(mi_td, "mi_last_medium", new_m);
+		setCookie(mi_td, "mi_last_term", new_t);
+		setCookie(mi_td, "mi_last_content", new_c);
+		setCookie(mi_td, "mi_last_campaign", new_n);
 
 	} else if (last_cookie) {
 
@@ -174,11 +174,11 @@
 		var track_fc = new_c;
 		var track_fn = new_n;
 
-		setCookie("mi_first_source", new_s);
-		setCookie("mi_first_medium", new_m);
-		setCookie("mi_first_term", new_t);
-		setCookie("mi_first_content", new_c);
-		setCookie("mi_first_campaign", new_n);
+		setCookie(mi_td, "mi_first_source", new_s);
+		setCookie(mi_td, "mi_first_medium", new_m);
+		setCookie(mi_td, "mi_first_term", new_t);
+		setCookie(mi_td, "mi_first_content", new_c);
+		setCookie(mi_td, "mi_first_campaign", new_n);
 
 	} 
 
