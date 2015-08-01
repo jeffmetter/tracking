@@ -158,16 +158,16 @@
 		}
 
 		setValue(mi_fs, track_first.source);
-		setValue(mi_fm, track_first[medium]);
-		setValue(mi_ft, track_first[term]);
-		setValue(mi_fc, track_first[content]);
-		setValue(mi_fn, track_first[campaign]);
+		setValue(mi_fm, track_first.medium);
+		setValue(mi_ft, track_first.term);
+		setValue(mi_fc, track_first.content);
+		setValue(mi_fn, track_first.campaign);
 
-		setValue(mi_ls, track_last[source]);
-		setValue(mi_lm, track_last[medium]);
-		setValue(mi_lt, track_last[term]);
-		setValue(mi_lc, track_last[content]);
-		setValue(mi_ln, track_last[campaign]);
+		setValue(mi_ls, track_last.source);
+		setValue(mi_lm, track_last.medium);
+		setValue(mi_lt, track_last.term);
+		setValue(mi_lc, track_last.content);
+		setValue(mi_ln, track_last.campaign);
 
 		// populate pardot iframes
 
