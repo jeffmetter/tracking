@@ -211,12 +211,12 @@
 
 
 		var elements = document.getElementsByTagName("iframe");
-		alert(elements[0].src);
-		/*
+
+		
 		for (var i = 0; i < elements.length; i++) {
 			//alert(elements[i].src);
 		}​
-		*/
+
 
 
 
