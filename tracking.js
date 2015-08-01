@@ -210,11 +210,13 @@
 
 
 
-		var elements = document.getElementsByTagName("iframe");
+		var iframes = document.getElementsByTagName("iframe");
 
-		for (var i = 0; i < elements.length; i++) {
-			if (elements[i].src && elements[i].src.indexOf(mi_pu) > -1) {
-				alert('yes');
+		for (var i = 0; i < iframes.length; i++) {
+			if (iframes[i].src && iframes[i].src.indexOf(mi_pu) > -1) {
+				var questamp = (iframes[i].src.indexOf("?") > -1 ? "&" : "?");
+
+				iframes[i].src = "testing";
 			}
 		}
 
