@@ -157,7 +157,7 @@
 			}
 		}
 
-		setValue(mi_fs, track_first[source]);
+		setValue(mi_fs, track_first.source);
 		setValue(mi_fm, track_first[medium]);
 		setValue(mi_ft, track_first[term]);
 		setValue(mi_fc, track_first[content]);
