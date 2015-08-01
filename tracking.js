@@ -213,7 +213,9 @@
 		var elements = document.getElementsByTagName("iframe");
 
 		for (var i = 0; i < elements.length; i++) {
-			
+			if (elements[i].src && elements[i].src.indexOf(mi_pu) > -1) {
+				alert('yes');
+			}
 		}
 
 
