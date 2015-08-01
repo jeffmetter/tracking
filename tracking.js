@@ -220,24 +220,6 @@
 			}
 		}
 
-
-		// populate form handler
-		/*
-
-		// append to pardot iframe url
-
-		jQuery("iframe").each(function() {
-			var iframeurl = jQuery(this).attr("src");
-			var questamp = "?";
-			if (iframeurl && iframeurl.indexOf(mi_pu) > -1) {
-				if (iframeurl.indexOf("?") > -1) {
-					questamp = "&";
-				}
-				jQuery(this).attr("src", iframeurl+questamp+"track_fs="+track_fs+"&track_fm="+track_fm+"&First_Term="+first_term+"&track_fc="+track_fc+"&track_fn="+track_fn+"&track_ls="+track_ls+"&track_lm="+track_lm+"&track_lt="+track_lt+"&track_lc="+track_lc+"&track_ln="+track_ln);
-			}
-		});
-		*/
-
 	}
 
 	removeUtms();
