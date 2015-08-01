@@ -62,101 +62,72 @@
 		query_t = getQuery("utm_term"),
 		query_c = getQuery("utm_content"),
 		query_n = getQuery("utm_campaign"),
-		new_s,
-		new_m,
-		new_t,
-		new_c,
-		new_n,
-		track_fs,
-		track_fm,
-		track_ft,
-		track_fc,
-		track_fn,
-		track_ls,
-		track_lm,
-		track_lt,
-		track_lc,
-		track_ln,
-		last_cookie = false,
-		first_cookie = false;
+		new_referral,
+		track_first,
+		track_last,
+		ref;
 
-	// check for cookies
+	// get cookies
 
-	if (getCookie("mi_last_source")) last_cookie = true;
-	if (getCookie("mi_last_medium")) last_cookie = true;
-	if (getCookie("mi_last_term")) last_cookie = true;
-	if (getCookie("mi_last_content")) last_cookie = true;
-	if (getCookie("mi_last_cmpaign")) last_cookie = true;
-
-	if (getCookie("mi_first_source")) first_cookie = true;
-	if (getCookie("mi_first_medium")) first_cookie = true;
-	if (getCookie("mi_first_term")) first_cookie = true;
-	if (getCookie("mi_first_content")) first_cookie = true;
-	if (getCookie("mi_first_campaign")) first_cookie = true;
+	var last_cookie = getCookie("mi_last_referral");
+	var first_cookie = getCookie("mi_first_referral");
 
 	// check for new values
 
 	if (hash_s || hash_m || hash_t || hash_c || hash_n) {
 
-		new_s = hash_s ? hash_s : "-";
-		new_m = hash_m ? hash_m : "-";
-		new_t = hash_t ? hash_t : "-";
-		new_c = hash_c ? hash_c : "-";
-		new_n = hash_n ? hash_n : "-";
+		new_referral = {
+			"source": hash_s ? hash_s : "-", 
+			"medium": hash_m ? hash_m : "-", 
+			"term": hash_t ? hash_t : "-", 
+			"content": hash_c ? hash_c : "-", 
+			"campaign": hash_n ? hash_n : "-"
+		};
 
 	} else if (query_s || query_m || query_t || query_c || query_n) {
 
-		new_s = query_s ? query_s : "-";
-		new_m = query_m ? query_m : "-";
-		new_t = query_t ? query_t : "-";
-		new_c = query_c ? query_c : "-";
-		new_n = query_n ? query_n : "-";
+		new_referral = {
+			"source": query_s ? query_s : "-", 
+			"medium": query_m ? query_m : "-", 
+			"term": query_t ? query_t : "-", 
+			"content": query_c ? query_c : "-", 
+			"campaign": query_n ? query_n : "-"
+		};
 
 	} else if (doc_ref && doc_ref.indexOf(mi_td) == -1) {
 
-		new_s = doc_ref;
-		new_m = "-";
-		new_t = "-";
-		new_c = "-";
-		new_n = "-";
+		new_referral = {
+			"source": doc_ref, 
+			"medium": "-", 
+			"term": "-", 
+			"content": "-", 
+			"campaign": "-"
+		};
 
 	} else if (doc_ref.indexOf(mi_td) == -1) {
 
-		new_s = "Web Form";
-		new_m = "-";
-		new_t = "-";
-		new_c = "-";
-		new_n = "-";
+		new_referral = {
+			"source": "Web Form", 
+			"medium": "-", 
+			"term": "-", 
+			"content": "-", 
+			"campaign": "-"
+		};
 
 	}
 
 	// track last values
 
-	if (new_s || new_m || new_t || new_c || new_n) {
+	if (new_referral) {
 
-		var track_ls = new_s;
-		var track_lm = new_m;
-		var track_lt = new_t;
-		var track_lc = new_c;
-		var track_ln = new_n;
+		track_last = new_referral;
 
-		setCookie(mi_td, "mi_last_source", new_s);
-		setCookie(mi_td, "mi_last_medium", new_m);
-		setCookie(mi_td, "mi_last_term", new_t);
-		setCookie(mi_td, "mi_last_content", new_c);
-		setCookie(mi_td, "mi_last_campaign", new_n);
-
-		var arr = {"source":new_s, "medium":new_m, "term":new_t, "content":new_c, "campaign":new_n};
-		var json_str = JSON.stringify(arr);
-		setCookie(mi_td, "mi_last_referral", json_str);
+		ref = JSON.stringify(new_referral);
+		setCookie(mi_td, "mi_last_referral", ref);
 
 	} else if (last_cookie) {
 
-		var track_ls = getCookie("mi_last_source");
-		var track_lm = getCookie("mi_last_medium");
-		var track_lt = getCookie("mi_last_term");
-		var track_lc = getCookie("mi_last_content");
-		var track_ln = getCookie("mi_last_campaign");
+		track_last = JSON.parse(last_cookie);
 
 	} 
 
@@ -164,29 +135,18 @@
 
 	if (first_cookie) {
 
-		var track_fs = getCookie("mi_first_source");
-		var track_fm = getCookie("mi_first_medium");
-		var track_ft = getCookie("mi_first_term");
-		var track_fc = getCookie("mi_first_content");
-		var track_fn = getCookie("mi_first_campaign");
+		track_first = JSON.parse(first_cookie);
 
-	} else if (new_s || new_m || new_t || new_c || new_n) {
+	} else if (new_referral) {
 
-		var track_fs = new_s;
-		var track_fm = new_m;
-		var track_ft = new_t;
-		var track_fc = new_c;
-		var track_fn = new_n;
+		track_first = new_referral;
 
-		setCookie(mi_td, "mi_first_source", new_s);
-		setCookie(mi_td, "mi_first_medium", new_m);
-		setCookie(mi_td, "mi_first_term", new_t);
-		setCookie(mi_td, "mi_first_content", new_c);
-		setCookie(mi_td, "mi_first_campaign", new_n);
+		ref = JSON.stringify(new_referral);
+		setCookie(mi_td, "mi_first_referral", ref);
 
 	} 
 
-	if (track_fs || track_fm || track_ft || track_fc || track_fn || track_ls || track_lm || track_lt || track_lc || track_ln) {
+	if (track_first || track_last) {
 
 		// populate form inputs
 
@@ -197,17 +157,17 @@
 			}
 		}
 
-		setValue(mi_fs, track_fs);
-		setValue(mi_fm, track_fm);
-		setValue(mi_ft, track_ft);
-		setValue(mi_fc, track_fc);
-		setValue(mi_fn, track_fn);
+		setValue(mi_fs, track_first[source]);
+		setValue(mi_fm, track_first[medium]);
+		setValue(mi_ft, track_first[term]);
+		setValue(mi_fc, track_first[content]);
+		setValue(mi_fn, track_first[campaign]);
 
-		setValue(mi_ls, track_ls);
-		setValue(mi_lm, track_lm);
-		setValue(mi_lt, track_lt);
-		setValue(mi_lc, track_lc);
-		setValue(mi_ln, track_ln);
+		setValue(mi_ls, track_last[source]);
+		setValue(mi_lm, track_last[medium]);
+		setValue(mi_lt, track_last[term]);
+		setValue(mi_lc, track_last[content]);
+		setValue(mi_ln, track_last[campaign]);
 
 		// populate pardot iframes
 
