@@ -146,10 +146,6 @@
 		setCookie(mi_td, "mi_last_content", new_c);
 		setCookie(mi_td, "mi_last_campaign", new_n);
 
-		var arr = [new_s, new_m, new_t, new_c, new_n];
-		var json_str = JSON.stringify(arr);
-		setCookie(mi_td, "mi_last_referral", json_str);
-
 	} else if (last_cookie) {
 
 		var track_ls = getCookie("mi_last_source");
