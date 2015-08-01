@@ -216,7 +216,7 @@
 			if (iframes[i].src && iframes[i].src.indexOf(mi_pu) > -1) {
 				var questamp = (iframes[i].src.indexOf("?") > -1 ? "&" : "?");
 
-				iframes[i].src = iframes[i].src+questamp+mi_fs+track_fs+mi_fm+track_fm+mi_ft+first_term+mi_fc+track_fc+mi_fn+track_fn+mi_ls+track_ls+mi_lm+track_lm+mi_lt+track_lt+mi_lc+track_lc+mi_ln+track_ln;
+				iframes[i].src = iframes[i].src+questamp+mi_fs+"="+track_fs+"&"+mi_fm+"="+track_fm+"&"+mi_ft+"="+track_ft+"&"+mi_fc+"="+track_fc+"&"+mi_fn+"="+track_fn+"&"+mi_ls+"="+track_ls+"&"+mi_lm+"="+track_lm+"&"+mi_lt+"="+track_lt+"&"+mi_lc+"="+track_lc+"&"+mi_ln+"="+track_ln;
 			}
 		}
 
