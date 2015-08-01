@@ -3,7 +3,7 @@
 	function getHash(variable) {
 		var query = window.location.hash.substring(1);
 		var vars = query.split("&");
-		for (var i=0;i<vars.length;i++) {
+		for (var i = 0; i < vars.length; i++) {
 		       var pair = vars[i].split("=");
 		       if(pair[0] == variable){return pair[1];}
 		}
@@ -13,7 +13,7 @@
 	function getQuery(variable) {
 		var query = window.location.search.substring(1);
 		var vars = query.split("&");
-		for (var i=0;i<vars.length;i++) {
+		for (var i = 0; i < vars.length; i++) {
 		       var pair = vars[i].split("=");
 		       if(pair[0] == variable){return pair[1];}
 		}
@@ -31,7 +31,7 @@
 	function getCookie(cname) {
 		var name = cname + "=";
 		var ca = document.cookie.split(";");
-		for (var i=0; i<ca.length; i++) {
+		for (var i = 0; i < ca.length; i++) {
 			var c = ca[i].trim();
 			if (c.indexOf(name)==0) return c.substring(name.length,c.length);
 		}
@@ -182,11 +182,9 @@
 
 	} 
 
-
-
-
-
 	if (track_fs || track_fm || track_ft || track_fc || track_fn || track_ls || track_lm || track_lt || track_lc || track_ln) {
+
+		// populate form inputs
 
 		function setValue(name, value) {
 			var input = document.getElementsByName(name);
@@ -207,15 +205,13 @@
 		setValue(mi_lc, track_lc);
 		setValue(mi_ln, track_ln);
 
-
-
+		// populate pardot iframes
 
 		var iframes = document.getElementsByTagName("iframe");
 
 		for (var i = 0; i < iframes.length; i++) {
 			if (iframes[i].src && iframes[i].src.indexOf(mi_pu) > -1) {
 				var questamp = (iframes[i].src.indexOf("?") > -1 ? "&" : "?");
-
 				iframes[i].src = iframes[i].src+questamp+mi_fs+"="+track_fs+"&"+mi_fm+"="+track_fm+"&"+mi_ft+"="+track_ft+"&"+mi_fc+"="+track_fc+"&"+mi_fn+"="+track_fn+"&"+mi_ls+"="+track_ls+"&"+mi_lm+"="+track_lm+"&"+mi_lt+"="+track_lt+"&"+mi_lc+"="+track_lc+"&"+mi_ln+"="+track_ln;
 			}
 		}
@@ -223,7 +219,5 @@
 	}
 
 	removeUtms();
-
-
 
 })();
