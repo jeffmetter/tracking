@@ -146,7 +146,7 @@
 		setCookie(mi_td, "mi_last_content", new_c);
 		setCookie(mi_td, "mi_last_campaign", new_n);
 
-		var arr = {"ls":new_s, "lm":new_m, "lt":new_t, "lc":new_c, "ln":new_n};
+		var arr = {"source":new_s, "medium":new_m, "term":new_t, "content":new_c, "campaign":new_n};
 		var json_str = JSON.stringify(arr);
 		setCookie(mi_td, "mi_last_referral", json_str);
 
