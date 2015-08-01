@@ -213,7 +213,7 @@
 var elements = document.getElementsByTagName("iframe");
 
 for (var i = 0; i < elements.length; i++) {
-    elements[i].src = "foo";
+    alert(elements[i].src);
 /*
 	if (iframeurl && iframeurl.indexOf(mi_pu) > -1) {
 		if (iframeurl.indexOf("?") > -1) {
