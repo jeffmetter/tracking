@@ -207,12 +207,13 @@
 
 		// populate pardot iframes
 
-		var iframes = document.getElementsByTagName("iframe");
-
-		for (var i = 0; i < iframes.length; i++) {
-			if (iframes[i].src && iframes[i].src.indexOf(mi_pu) > -1) {
-				var questamp = (iframes[i].src.indexOf("?") > -1 ? "&" : "?");
-				iframes[i].src = iframes[i].src+questamp+mi_fs+"="+track_fs+"&"+mi_fm+"="+track_fm+"&"+mi_ft+"="+track_ft+"&"+mi_fc+"="+track_fc+"&"+mi_fn+"="+track_fn+"&"+mi_ls+"="+track_ls+"&"+mi_lm+"="+track_lm+"&"+mi_lt+"="+track_lt+"&"+mi_lc+"="+track_lc+"&"+mi_ln+"="+track_ln;
+		if (mi_pu) {
+			var iframes = document.getElementsByTagName("iframe");
+			for (var i = 0; i < iframes.length; i++) {
+				if (iframes[i].src && iframes[i].src.indexOf(mi_pu) > -1) {
+					var questamp = (iframes[i].src.indexOf("?") > -1 ? "&" : "?");
+					iframes[i].src = iframes[i].src+questamp+mi_fs+"="+track_fs+"&"+mi_fm+"="+track_fm+"&"+mi_ft+"="+track_ft+"&"+mi_fc+"="+track_fc+"&"+mi_fn+"="+track_fn+"&"+mi_ls+"="+track_ls+"&"+mi_lm+"="+track_lm+"&"+mi_lt+"="+track_lt+"&"+mi_lc+"="+track_lc+"&"+mi_ln+"="+track_ln;
+				}
 			}
 		}
 
