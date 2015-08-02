@@ -157,17 +157,17 @@
 			}
 		}
 
-		setValue(mi_fs, track_first.source);
-		setValue(mi_fm, track_first.medium);
-		setValue(mi_ft, track_first.term);
-		setValue(mi_fc, track_first.content);
-		setValue(mi_fn, track_first.campaign);
+		setValue(mi_fs, track_first["source"]);
+		setValue(mi_fm, track_first["medium"]);
+		setValue(mi_ft, track_first["term"]);
+		setValue(mi_fc, track_first["content"]);
+		setValue(mi_fn, track_first["campaign"]);
 
-		setValue(mi_ls, track_last.source);
-		setValue(mi_lm, track_last.medium);
-		setValue(mi_lt, track_last.term);
-		setValue(mi_lc, track_last.content);
-		setValue(mi_ln, track_last.campaign);
+		setValue(mi_ls, track_last["source"]);
+		setValue(mi_lm, track_last["medium"]);
+		setValue(mi_lt, track_last["term"]);
+		setValue(mi_lc, track_last["content"]);
+		setValue(mi_ln, track_last["campaign"]);
 
 		// populate pardot iframes
 
@@ -175,8 +175,22 @@
 			var iframes = document.getElementsByTagName("iframe");
 			for (var i = 0; i < iframes.length; i++) {
 				if (iframes[i].src && iframes[i].src.indexOf(mi_pu) > -1) {
-					var questamp = (iframes[i].src.indexOf("?") > -1 ? "&" : "?");
-					iframes[i].src = iframes[i].src+questamp+mi_fs+"="+track_fs+"&"+mi_fm+"="+track_fm+"&"+mi_ft+"="+track_ft+"&"+mi_fc+"="+track_fc+"&"+mi_fn+"="+track_fn+"&"+mi_ls+"="+track_ls+"&"+mi_lm+"="+track_lm+"&"+mi_lt+"="+track_lt+"&"+mi_lc+"="+track_lc+"&"+mi_ln+"="+track_ln;
+
+					var append_url = iframes[i].src;
+					append_url += (iframes[i].src.indexOf("?") > -1 ? "&" : "?");
+					append_url += mi_fs+"="+track_first["source"];
+					append_url += "&"+mi_fm+"="+track_first["medium"];
+					append_url += "&"+mi_ft+"="+track_first["term"];
+					append_url += "&"+mi_fc+"="+track_first["content"];
+					append_url += "&"+mi_fn+"="+track_first["campaign"];
+					append_url += "&"+mi_ls+"="+track_last["source"];
+					append_url += "&"+mi_lm+"="+track_last["medium"];
+					append_url += "&"+mi_lt+"="+track_last["term"];
+					append_url += "&"+mi_lc+"="+track_last["content"];
+					append_url += "&"+mi_ln+"="+track_last["campaign"];
+
+					iframes[i].src = append_url;
+					
 				}
 			}
 		}
