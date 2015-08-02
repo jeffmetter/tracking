@@ -72,47 +72,49 @@
 	var last_cookie = getCookie("mi_last_referral");
 	var first_cookie = getCookie("mi_first_referral");
 
+
+	// referral class
+
+	function Referral(source,medium,term,content,campaign) {
+		this.source = source;
+		this.medium = medium;
+		this.term = term;
+		this.content = content;
+		this.campaign = campaign;
+	}
+
+
+
+
 	// check for new values
 
 	if (hash_s || hash_m || hash_t || hash_c || hash_n) {
 
-		new_referral = {
-			"source": hash_s ? hash_s : "-", 
-			"medium": hash_m ? hash_m : "-", 
-			"term": hash_t ? hash_t : "-", 
-			"content": hash_c ? hash_c : "-", 
-			"campaign": hash_n ? hash_n : "-"
-		};
+		if (!hash_s) hash_s = "-";
+		if (!hash_m) hash_m = "-";
+		if (!hash_t) hash_t = "-";
+		if (!hash_c) hash_c = "-";
+		if (!hash_n) hash_n = "-";
+
+		new_referral = new Referral(hash_s, hash_m, hash_t, hash_c, hash_n);
 
 	} else if (query_s || query_m || query_t || query_c || query_n) {
 
-		new_referral = {
-			"source": query_s ? query_s : "-", 
-			"medium": query_m ? query_m : "-", 
-			"term": query_t ? query_t : "-", 
-			"content": query_c ? query_c : "-", 
-			"campaign": query_n ? query_n : "-"
-		};
+		if (!query_s) query_s = "-";
+		if (!query_m) query_m = "-";
+		if (!query_t) query_t = "-";
+		if (!query_c) query_c = "-";
+		if (!query_n) query_n = "-";
+
+		new_referral = new Referral(query_s, query_m, query_t, query_c, query_n);
 
 	} else if (doc_ref && doc_ref.indexOf(mi_td) == -1) {
 
-		new_referral = {
-			"source": doc_ref, 
-			"medium": "-", 
-			"term": "-", 
-			"content": "-", 
-			"campaign": "-"
-		};
+		new_referral = new Referral(doc_ref, "-", "-", "-", "-");
 
 	} else if (doc_ref.indexOf(mi_td) == -1) {
 
-		new_referral = {
-			"source": "Web Form", 
-			"medium": "-", 
-			"term": "-", 
-			"content": "-", 
-			"campaign": "-"
-		};
+		new_referral = new Referral("Web Form", "-", "-", "-", "-");
 
 	}
 
