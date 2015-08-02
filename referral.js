@@ -162,16 +162,16 @@
 					var amp = (iframes[i].src.indexOf("?") > -1 ? "&" : "?");
 					var url = iframes[i].src;
 
-					url += amp+mi_fs+"="+trackFirst["source"];
-					url += "&"+mi_fm+"="+trackFirst["medium"];
-					url += "&"+mi_ft+"="+trackFirst["term"];
-					url += "&"+mi_fc+"="+trackFirst["content"];
-					url += "&"+mi_fn+"="+trackFirst["campaign"];
-					url += "&"+mi_ls+"="+trackLast["source"];
-					url += "&"+mi_lm+"="+trackLast["medium"];
-					url += "&"+mi_lt+"="+trackLast["term"];
-					url += "&"+mi_lc+"="+trackLast["content"];
-					url += "&"+mi_ln+"="+trackLast["campaign"];
+					url += amp+mi_fs+"="+encodeURI(trackFirst["source"]);
+					url += "&"+mi_fm+"="+encodeURI(trackFirst["medium"]);
+					url += "&"+mi_ft+"="+encodeURI(trackFirst["term"]);
+					url += "&"+mi_fc+"="+encodeURI(trackFirst["content"]);
+					url += "&"+mi_fn+"="+encodeURI(trackFirst["campaign"]);
+					url += "&"+mi_ls+"="+encodeURI(trackLast["source"]);
+					url += "&"+mi_lm+"="+encodeURI(trackLast["medium"]);
+					url += "&"+mi_lt+"="+encodeURI(trackLast["term"]);
+					url += "&"+mi_lc+"="+encodeURI(trackLast["content"]);
+					url += "&"+mi_ln+"="+encodeURI(trackLast["campaign"]);
 
 					iframes[i].src = url;
 
