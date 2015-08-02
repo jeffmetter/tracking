@@ -176,8 +176,7 @@
 			for (var i = 0; i < iframes.length; i++) {
 				if (iframes[i].src && iframes[i].src.indexOf(mi_pu) > -1) {
 
-					var append_url = iframes[i].src;
-					append_url += (iframes[i].src.indexOf("?") > -1 ? "&" : "?");
+					var	append_url += (iframes[i].src.indexOf("?") > -1 ? "&" : "?");
 					append_url += mi_fs+"="+track_first["source"];
 					append_url += "&"+mi_fm+"="+track_first["medium"];
 					append_url += "&"+mi_ft+"="+track_first["term"];
@@ -190,7 +189,7 @@
 					append_url += "&"+mi_ln+"="+track_last["campaign"];
 
 					iframes[i].src = append_url;
-					
+
 				}
 			}
 		}
