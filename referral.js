@@ -176,19 +176,21 @@
 			for (var i = 0; i < iframes.length; i++) {
 				if (iframes[i].src && iframes[i].src.indexOf(mi_pu) > -1) {
 
-					var	append_url += (iframes[i].src.indexOf("?") > -1 ? "&" : "?");
-					append_url += mi_fs+"="+track_first["source"];
-					append_url += "&"+mi_fm+"="+track_first["medium"];
-					append_url += "&"+mi_ft+"="+track_first["term"];
-					append_url += "&"+mi_fc+"="+track_first["content"];
-					append_url += "&"+mi_fn+"="+track_first["campaign"];
-					append_url += "&"+mi_ls+"="+track_last["source"];
-					append_url += "&"+mi_lm+"="+track_last["medium"];
-					append_url += "&"+mi_lt+"="+track_last["term"];
-					append_url += "&"+mi_lc+"="+track_last["content"];
-					append_url += "&"+mi_ln+"="+track_last["campaign"];
+					var amp = (iframes[i].src.indexOf("?") > -1 ? "&" : "?");
+					var track_pu = iframes[i].src;
 
-					iframes[i].src = append_url;
+					track_pu += amp+mi_fs+"="+track_first["source"];
+					track_pu += "&"+mi_fm+"="+track_first["medium"];
+					track_pu += "&"+mi_ft+"="+track_first["term"];
+					track_pu += "&"+mi_fc+"="+track_first["content"];
+					track_pu += "&"+mi_fn+"="+track_first["campaign"];
+					track_pu += "&"+mi_ls+"="+track_last["source"];
+					track_pu += "&"+mi_lm+"="+track_last["medium"];
+					track_pu += "&"+mi_lt+"="+track_last["term"];
+					track_pu += "&"+mi_lc+"="+track_last["content"];
+					track_pu += "&"+mi_ln+"="+track_last["campaign"];
+
+					iframes[i].src = track_pu;
 
 				}
 			}
