@@ -49,30 +49,6 @@
 		};
 	}
 
-	// variable declaration
-
-	var doc_ref = document.referrer,
-		hash_s = getHash("utm_source"),
-		hash_m = getHash("utm_medium"),
-		hash_t = getHash("utm_term"),
-		hash_c = getHash("utm_content"),
-		hash_n = getHash("utm_campaign"),
-		query_s = getQuery("utm_source"),
-		query_m = getQuery("utm_medium"),
-		query_t = getQuery("utm_term"),
-		query_c = getQuery("utm_content"),
-		query_n = getQuery("utm_campaign"),
-		new_referral,
-		track_first,
-		track_last,
-		ref;
-
-	// get cookies
-
-	var last_cookie = getCookie("mi_last_referral");
-	var first_cookie = getCookie("mi_first_referral");
-
-
 	// referral class
 
 	function Referral(source,medium,term,content,campaign) {
@@ -83,72 +59,90 @@
 		this.campaign = campaign;
 	}
 
+	// variables
 
+	var newReferral,
+		trackFirst,
+		trackLast;
 
+	// get referrer
+
+	var doc_ref = document.referrer,
+		hashS = getHash("utm_source"),
+		hashM = getHash("utm_medium"),
+		hashT = getHash("utm_term"),
+		hashC = getHash("utm_content"),
+		hashN = getHash("utm_campaign"),
+		queryS = getQuery("utm_source"),
+		queryM = getQuery("utm_medium"),
+		queryT = getQuery("utm_term"),
+		queryC = getQuery("utm_content"),
+		queryN = getQuery("utm_campaign");
+
+	// get cookies
+
+	var lastCookie = getCookie("mi_last_referral"),
+		firstCookie = getCookie("mi_first_referral");
 
 	// check for new values
 
-	if (hash_s || hash_m || hash_t || hash_c || hash_n) {
+	if (hashS || hashM || hashT || hashC || hashN) {
 
-		if (!hash_s) hash_s = "-";
-		if (!hash_m) hash_m = "-";
-		if (!hash_t) hash_t = "-";
-		if (!hash_c) hash_c = "-";
-		if (!hash_n) hash_n = "-";
+		if (!hashS) hashS = "-";
+		if (!hashM) hashM = "-";
+		if (!hashT) hashT = "-";
+		if (!hashC) hashC = "-";
+		if (!hashN) hashN = "-";
 
-		new_referral = new Referral(hash_s, hash_m, hash_t, hash_c, hash_n);
+		newReferral = new Referral(hashS, hashM, hashT, hashC, hashN);
 
-	} else if (query_s || query_m || query_t || query_c || query_n) {
+	} else if (queryS || queryM || queryT || queryC || queryN) {
 
-		if (!query_s) query_s = "-";
-		if (!query_m) query_m = "-";
-		if (!query_t) query_t = "-";
-		if (!query_c) query_c = "-";
-		if (!query_n) query_n = "-";
+		if (!queryS) queryS = "-";
+		if (!queryM) queryM = "-";
+		if (!queryT) queryT = "-";
+		if (!queryC) queryC = "-";
+		if (!queryN) queryN = "-";
 
-		new_referral = new Referral(query_s, query_m, query_t, query_c, query_n);
+		newReferral = new Referral(queryS, queryM, queryT, queryC, queryN);
 
 	} else if (doc_ref && doc_ref.indexOf(mi_td) == -1) {
 
-		new_referral = new Referral(doc_ref, "-", "-", "-", "-");
+		newReferral = new Referral(doc_ref, "-", "-", "-", "-");
 
 	} else if (doc_ref.indexOf(mi_td) == -1) {
 
-		new_referral = new Referral("Web Form", "-", "-", "-", "-");
+		newReferral = new Referral("Web Form", "-", "-", "-", "-");
 
 	}
 
 	// track last values
 
-	if (new_referral) {
+	if (newReferral) {
 
-		track_last = new_referral;
+		trackLast = newReferral;
+		setCookie(mi_td, "mi_last_referral", JSON.stringify(newReferral));
 
-		ref = JSON.stringify(new_referral);
-		setCookie(mi_td, "mi_last_referral", ref);
+	} else if (lastCookie) {
 
-	} else if (last_cookie) {
-
-		track_last = JSON.parse(last_cookie);
+		trackLast = JSON.parse(lastCookie);
 
 	} 
 
 	// track first values
 
-	if (first_cookie) {
+	if (firstCookie) {
 
-		track_first = JSON.parse(first_cookie);
+		trackFirst = JSON.parse(firstCookie);
 
-	} else if (new_referral) {
+	} else if (newReferral) {
 
-		track_first = new_referral;
-
-		ref = JSON.stringify(new_referral);
-		setCookie(mi_td, "mi_first_referral", ref);
+		trackFirst = newReferral;
+		setCookie(mi_td, "mi_first_referral", JSON.stringify(newReferral));
 
 	} 
 
-	if (track_first || track_last) {
+	if (trackFirst || trackLast) {
 
 		// populate form inputs
 
@@ -159,17 +153,17 @@
 			}
 		}
 
-		setValue(mi_fs, track_first["source"]);
-		setValue(mi_fm, track_first["medium"]);
-		setValue(mi_ft, track_first["term"]);
-		setValue(mi_fc, track_first["content"]);
-		setValue(mi_fn, track_first["campaign"]);
+		setValue(mi_fs, trackFirst["source"]);
+		setValue(mi_fm, trackFirst["medium"]);
+		setValue(mi_ft, trackFirst["term"]);
+		setValue(mi_fc, trackFirst["content"]);
+		setValue(mi_fn, trackFirst["campaign"]);
 
-		setValue(mi_ls, track_last["source"]);
-		setValue(mi_lm, track_last["medium"]);
-		setValue(mi_lt, track_last["term"]);
-		setValue(mi_lc, track_last["content"]);
-		setValue(mi_ln, track_last["campaign"]);
+		setValue(mi_ls, trackLast["source"]);
+		setValue(mi_lm, trackLast["medium"]);
+		setValue(mi_lt, trackLast["term"]);
+		setValue(mi_lc, trackLast["content"]);
+		setValue(mi_ln, trackLast["campaign"]);
 
 		// populate pardot iframes
 
@@ -181,16 +175,16 @@
 					var amp = (iframes[i].src.indexOf("?") > -1 ? "&" : "?");
 					var track_pu = iframes[i].src;
 
-					track_pu += amp+mi_fs+"="+track_first["source"];
-					track_pu += "&"+mi_fm+"="+track_first["medium"];
-					track_pu += "&"+mi_ft+"="+track_first["term"];
-					track_pu += "&"+mi_fc+"="+track_first["content"];
-					track_pu += "&"+mi_fn+"="+track_first["campaign"];
-					track_pu += "&"+mi_ls+"="+track_last["source"];
-					track_pu += "&"+mi_lm+"="+track_last["medium"];
-					track_pu += "&"+mi_lt+"="+track_last["term"];
-					track_pu += "&"+mi_lc+"="+track_last["content"];
-					track_pu += "&"+mi_ln+"="+track_last["campaign"];
+					track_pu += amp+mi_fs+"="+trackFirst["source"];
+					track_pu += "&"+mi_fm+"="+trackFirst["medium"];
+					track_pu += "&"+mi_ft+"="+trackFirst["term"];
+					track_pu += "&"+mi_fc+"="+trackFirst["content"];
+					track_pu += "&"+mi_fn+"="+trackFirst["campaign"];
+					track_pu += "&"+mi_ls+"="+trackLast["source"];
+					track_pu += "&"+mi_lm+"="+trackLast["medium"];
+					track_pu += "&"+mi_lt+"="+trackLast["term"];
+					track_pu += "&"+mi_lc+"="+trackLast["content"];
+					track_pu += "&"+mi_ln+"="+trackLast["campaign"];
 
 					iframes[i].src = track_pu;
 
