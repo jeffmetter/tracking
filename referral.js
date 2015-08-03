@@ -49,6 +49,8 @@
 		}
 	}
 
+	// referral class
+
 	function Referral(source, medium, term, content, campaign) {
 		this.source = source;
 		this.medium = medium;
@@ -56,6 +58,8 @@
 		this.content = content;
 		this.campaign = campaign;
 	}
+
+	// get referral
 
 	function getReferral(domain) {
 		var ref = document.referrer,
@@ -94,24 +98,16 @@
 
 	var newReferral = getReferral(mi_td);
 
-
-
-
-	// variables
-
-	var trackFirst,
-		trackLast;
-
 	// get cookies
 
 	var lastCookie = getCookie("mi_last_referral"),
 		firstCookie = getCookie("mi_first_referral");
 
 
+	// track referrals
 
-
-
-	// track last values
+	var trackFirst,
+		trackLast;
 
 	if (newReferral) {
 		trackLast = newReferral;
@@ -119,8 +115,6 @@
 	} else if (lastCookie) {
 		trackLast = JSON.parse(lastCookie);
 	} 
-
-	// track first values
 
 	if (firstCookie) {
 		trackFirst = JSON.parse(firstCookie);
@@ -145,7 +139,6 @@
 		setValue(mi_ft, trackFirst["term"]);
 		setValue(mi_fc, trackFirst["content"]);
 		setValue(mi_fn, trackFirst["campaign"]);
-
 		setValue(mi_ls, trackLast["source"]);
 		setValue(mi_lm, trackLast["medium"]);
 		setValue(mi_lt, trackLast["term"]);
