@@ -104,52 +104,32 @@
 
 	}
 
-	function calculateFirst(domain, ref) {
-
-		var first = getCookie("mi_last_referral");
-
-		if (first) {
-
-			return JSON.parse(first);
-
-		} else if (ref) {
-
-			setCookie(domain, "mi_first_referral", JSON.stringify(ref));
-			return ref;
-
-		}
-	}
-
-	function calculateLast(domain, ref) {
-
-		var last = getCookie("mi_last_referral");
-
-		if (ref) {
-
-			setCookie(domain, "mi_last_referral", JSON.stringify(ref));
-			return ref;
-
-		} else if (last) {
-
-			return JSON.parse(last);
-
-		}
-		
-	}
-
-
-
-
-
-
-
 
 
 	// get referral and calculate which values to track
 
 	var newReferral = getReferral(mi_td);
-	var trackFirst = calculateFirst(mi_td, newReferral);
-	var trackLast = calculateLast(mi_td, newReferral);
+
+	var firstCookie = getCookie("mi_last_referral"),
+		trackFirst;
+
+	if (firstCookie) {
+		trackFirst = JSON.parse(firstCookie);
+	} else if (newReferral) {
+		setCookie(domain, "mi_first_referral", JSON.stringify(newReferral));
+		trackFirst = newReferral;
+	}
+
+	var lastCookie = getCookie("mi_last_referral"),
+		trackLast;
+
+	if (newReferral) {
+		setCookie(domain, "mi_last_referral", JSON.stringify(newReferral));
+		trackLast = newReferral;
+	} else if (lastCookie) {
+		trackLast = JSON.parse(lastCookie);
+	}
+
 
 
 	// add values to forms
