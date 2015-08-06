@@ -125,7 +125,7 @@
 
 		setCookie(mi_td, "mi_last_referral", JSON.stringify(newReferral));
 
-		if (!firstCookie) {
+		if (!getCookie("mi_first_referral")) {
 
 			setCookie(mi_td, "mi_first_referral", JSON.stringify(newReferral));
 
@@ -139,16 +139,16 @@
 	var	trackFirst,
 		trackLast;
 
-	if (firstCookie) {
-		trackFirst = JSON.parse(firstCookie);
+	if (getCookie("mi_first_referral")) {
+		trackFirst = JSON.parse(getCookie("mi_first_referral"));
 	} else if (newReferral) {
 		trackFirst = newReferral;
 	}
 
 	if (newReferral) {
 		trackLast = newReferral;
-	} else if (lastCookie) {
-		trackLast = JSON.parse(lastCookie);
+	} else if (getCookie("mi_last_referral")) {
+		trackLast = JSON.parse(getCookie("mi_last_referral"));
 	}
 
 
