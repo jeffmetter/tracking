@@ -49,8 +49,6 @@
 		}
 	}
 
-	// referral class
-
 	function Referral(source, medium, term, content, campaign) {
 		this.source = source;
 		this.medium = medium;
@@ -58,8 +56,6 @@
 		this.content = content;
 		this.campaign = campaign;
 	}
-
-	// get referral
 
 	function getReferral(domain) {
 		var ref = document.referrer,
@@ -96,32 +92,43 @@
 		return n;
 	}
 
+	function calculateFirst(domain, ref) {
+		var first = getCookie("mi_last_referral");
+		if (first) {
+			return JSON.parse(first);
+		} else if (ref) {
+			setCookie(domain, "mi_first_referral", JSON.stringify(ref));
+			return ref;
+		}
+	}
+
+	function calculateLast(domain, ref) {
+		var last = getCookie("mi_last_referral");
+		if (ref) {
+			setCookie(domain, "mi_last_referral", JSON.stringify(ref));
+			return ref;
+		} else if (last) {
+			return JSON.parse(last);
+		}
+	}
+
+
+
+
+
+
+
+
+
+	// get referral and calculate which values to track
+
 	var newReferral = getReferral(mi_td);
+	var trackFirst = calculateFirst(mi_td, newReferral);
+	var trackLast = calculateLast(mi_td, newReferral);
 
 
-	// track referral
+	// add values to forms
 
-	function calculateFirst(n) {
-		var f = getCookie("mi_last_referral");
-		if (f) {
-			return JSON.parse(f);
-		} else if (n) {
-			setCookie(mi_td, "mi_first_referral", JSON.stringify(n));
-			return n;
-		}
-	}
-	function calculateLast(n) {
-		var l = getCookie("mi_last_referral");
-		if (n) {
-			setCookie(mi_td, "mi_last_referral", JSON.stringify(n));
-			return n;
-		} else if (l) {
-			return JSON.parse(l);
-		}
-	}
-	var trackFirst = calculateFirst(newReferral);
-	var trackLast = calculateLast(newReferral);
-	
 	if (trackFirst || trackLast) {
 
 		// populate form inputs
