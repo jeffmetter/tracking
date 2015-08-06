@@ -104,7 +104,7 @@
 
 	}
 
-/*
+
 
 	// get referral 
 
@@ -133,6 +133,10 @@
 
 	}
 
+
+
+
+/*
 
 	// use cookie or referral
 
@@ -153,178 +157,6 @@
 
 */
 
-
-
-
-	var referrer_source = document.referrer;
-
-	var hash_utm_source = getHash('utm_source');
-	var hash_utm_medium = getHash('utm_medium');
-	var hash_utm_term = getHash('utm_term');
-	var hash_utm_content = getHash('utm_content');
-	var hash_utm_campaign = getHash('utm_campaign');
-
-	var query_utm_source = getQuery('utm_source');
-	var query_utm_medium = getQuery('utm_medium');
-	var query_utm_term = getQuery('utm_term');
-	var query_utm_content = getQuery('utm_content');
-	var query_utm_campaign = getQuery('utm_campaign');
-
-	var new_values = false;
-	var has_values = false;
-
-	var track_source = '';
-	var track_medium = '';
-	var track_term = '';
-	var track_content = '';
-	var track_campaign = '';
-
-	var first_source = '';
-	var first_medium = '';
-	var firs_term = '';
-	var first_content = '';
-	var first_campaign = '';
-
-	var last_source = '';
-	var last_medium = '';
-	var last_term = '';
-	var last_content = '';
-	var last_campaign = '';
-
-
-
-
-
-	// get referral 
-
-	var newReferral = getReferral(mi_td);
-
-
-
-	// get cookies
-
-	var	firstCookie = getCookie("mi_first_referral"),
-		lastCookie = getCookie("mi_last_referral");
-
-
-
-	// set cookies
-
-	if (newReferral) {
-
-		setCookie(mi_td, "mi_last_referral", JSON.stringify(newReferral));
-
-		if (!firstCookie) {
-
-			setCookie(mi_td, "mi_first_referral", JSON.stringify(newReferral));
-
-		}
-
-	}
-
-
-
-
-
-
-
-
-	
-/*
-	// use utm or referrer
-
-	if (hash_utm_source || hash_utm_medium || hash_utm_term || hash_utm_content || hash_utm_campaign) {
-
-		var newTestReferral = new Referral(hash_utm_source, hash_utm_medium, hash_utm_term, hash_utm_content, hash_utm_campaign);
-
-		new_values = true;
-
-	} else if (query_utm_source || query_utm_medium || query_utm_term || query_utm_content || query_utm_campaign) {
-
-		var newTestReferral = new Referral(query_utm_source, query_utm_medium, query_utm_term, query_utm_content, query_utm_campaign);
-
-		new_values = true;
-
-	} else if (referrer_source && referrer_source.indexOf(mi_td) == -1) {
-
-		var newTestReferral = new Referral(referrer_source, '-', '-', '-', '-');
-
-		new_values = true;
-
-	} else if (referrer_source.indexOf(mi_td) == -1) {
-
-		var newTestReferral = new Referral('Web Form', '-', '-', '-', '-');
-
-		new_values = true;
-
-	}
-
-	// set cookies
-
-	if (new_values) {
-
-		setCookie(mi_td, "mi_last_referral", JSON.stringify(newTestReferral));
-
-		if (!getCookie('mi_first_source')) {
-
-			setCookie(mi_td, "mi_first_referral", JSON.stringify(newTestReferral));
-
-		}
-
-	}
-*/
-
-
-
-
-
-
-
-	// use cookies or variables
-
-	if (new_values) {
-
-		var last_source = track_source;
-		var last_medium = track_medium;
-		var last_term = track_term;
-		var last_content = track_content;
-		var last_campaign = track_campaign;
-
-		has_values = true;
-
-	} else if (getCookie('mi_last_source')) {
-
-		var last_source = getCookie('mi_last_source');
-		var last_medium = getCookie('mi_last_medium');
-		var last_term = getCookie('mi_last_term');
-		var last_content = getCookie('mi_last_content');
-		var last_campaign = getCookie('mi_last_campaign');
-
-		has_values = true;
-
-	} 
-
-	if (new_values && !getCookie('mi_first_source')) {
-
-		var first_source = track_source;
-		var first_medium = track_medium;
-		var first_term = track_term;
-		var first_content = track_content;
-		var first_campaign = track_campaign;
-
-		has_values = true;
-
-	} else if (getCookie('mi_first_source')) {
-
-		var first_source = getCookie('mi_first_source');
-		var first_medium = getCookie('mi_first_medium');
-		var first_term = getCookie('mi_first_term');
-		var first_content = getCookie('mi_first_content');
-		var first_campaign = getCookie('mi_first_campaign');
-
-		has_values = true;
-
-	}
 
 
 
