@@ -106,25 +106,46 @@
 
 
 
-	// get referral and calculate which values to track
+	// get referral 
 
 	var newReferral = getReferral(mi_td);
 
-	var firstCookie = getCookie("mi_last_referral"),
-		trackFirst;
+
+
+	// get cookies
+
+	var	firstCookie = getCookie("mi_first_referral"),
+		lastCookie = getCookie("mi_last_referral");
+
+
+
+	// set cookies
+
+	if (newReferral) {
+
+		setCookie(mi_td, "mi_last_referral", JSON.stringify(newReferral));
+
+		if (!firstCookie) {
+
+			setCookie(mi_td, "mi_first_referral", JSON.stringify(newReferral));
+
+		}
+
+	}
+
+
+	// use cookie or referral
+
+	var	trackFirst,
+		trackLast;
 
 	if (firstCookie) {
 		trackFirst = JSON.parse(firstCookie);
 	} else if (newReferral) {
-		setCookie(mi_td, "mi_first_referral", JSON.stringify(newReferral));
 		trackFirst = newReferral;
 	}
 
-	var lastCookie = getCookie("mi_last_referral"),
-		trackLast;
-
 	if (newReferral) {
-		setCookie(mi_td, "mi_last_referral", JSON.stringify(newReferral));
 		trackLast = newReferral;
 	} else if (lastCookie) {
 		trackLast = JSON.parse(lastCookie);
