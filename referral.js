@@ -58,6 +58,7 @@
 	}
 
 	function getReferral(domain) {
+
 		var ref = document.referrer,
 			hs = getHash("utm_source"),
 			hm = getHash("utm_medium"),
@@ -70,46 +71,70 @@
 			qc = getQuery("utm_content"),
 			qn = getQuery("utm_campaign"),
 			n;
+
 		if (hs || hm || ht || hc || hn) {
+
 			if (!hs) hs = "-";
 			if (!hm) hm = "-";
 			if (!ht) ht = "-";
 			if (!hc) hc = "-";
 			if (!hn) hn = "-";
 			n = new Referral(hs, hm, ht, hc, hn);
+
 		} else if (qs || qm || qt || qc || qn) {
+
 			if (!qs) qs = "-";
 			if (!qm) qm = "-";
 			if (!qt) qt = "-";
 			if (!qc) qc = "-";
 			if (!qn) qn = "-";
 			n = new Referral(qs, qm, qt, qc, qn);
+
 		} else if (ref && ref.indexOf(domain) == -1) {
+
 			n = new Referral(ref, "-", "-", "-", "-");
+
 		} else if (ref.indexOf(domain) == -1) {
+
 			n = new Referral("Web Form", "-", "-", "-", "-");
+
 		}
+
 		return n;
+
 	}
 
 	function calculateFirst(domain, ref) {
+
 		var first = getCookie("mi_last_referral");
+
 		if (first) {
+
 			return JSON.parse(first);
+
 		} else if (ref) {
+
 			setCookie(domain, "mi_first_referral", JSON.stringify(ref));
 			return ref;
+
 		}
 	}
 
 	function calculateLast(domain, ref) {
+
 		var last = getCookie("mi_last_referral");
+
 		if (ref) {
+
 			setCookie(domain, "mi_last_referral", JSON.stringify(ref));
 			return ref;
+
 		} else if (last) {
+
 			return JSON.parse(last);
+
 		}
+		
 	}
 
 
