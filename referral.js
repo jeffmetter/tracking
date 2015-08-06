@@ -70,7 +70,7 @@
 			qt = getQuery("utm_term"),
 			qc = getQuery("utm_content"),
 			qn = getQuery("utm_campaign"),
-			n;
+			n = false;
 
 		if (hs || hm || ht || hc || hn) {
 
@@ -142,7 +142,7 @@
 
 	var	trackFirst = false,
 		trackLast = false;
-/*
+
 	if (firstCookie) {
 		trackFirst = JSON.parse(firstCookie);
 	} else if (newReferral) {
@@ -155,7 +155,7 @@
 		trackLast = JSON.parse(lastCookie);
 	}
 
-*/
+
 
 
 
