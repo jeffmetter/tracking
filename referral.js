@@ -60,7 +60,7 @@
 
 		this.getVal = function(v) {
 			return this.v ? this.v : "-";
-		}
+		};
 
 	}
 
@@ -129,16 +129,16 @@
 			}
 		}
 
-		setValue(mi_fs, trackFirst.getVal("source"));
-		setValue(mi_fm, trackFirst.getVal("medium"));
-		setValue(mi_ft, trackFirst.getVal("term"));
-		setValue(mi_fc, trackFirst.getVal("content"));
-		setValue(mi_fn, trackFirst.getVal("campaign"));
-		setValue(mi_ls, trackLast.getVal("source"));
-		setValue(mi_lm, trackLast.getVal("medium"));
-		setValue(mi_lt, trackLast.getVal("term"));
-		setValue(mi_lc, trackLast.getVal("content"));
-		setValue(mi_ln, trackLast.getVal("campaign"));
+		setValue(mi_fs, newReferral.getVal("source"));
+		setValue(mi_fm, newReferral.getVal("medium"));
+		setValue(mi_ft, newReferral.getVal("term"));
+		setValue(mi_fc, newReferral.getVal("content"));
+		setValue(mi_fn, newReferral.getVal("campaign"));
+		setValue(mi_ls, newReferral.getVal("source"));
+		setValue(mi_lm, newReferral.getVal("medium"));
+		setValue(mi_lt, newReferral.getVal("term"));
+		setValue(mi_lc, newReferral.getVal("content"));
+		setValue(mi_ln, newReferral.getVal("campaign"));
 
 		// populate pardot iframes
 
