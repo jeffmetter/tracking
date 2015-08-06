@@ -191,6 +191,46 @@
 	var last_content = '';
 	var last_campaign = '';
 
+
+
+
+
+	// get referral 
+
+	var newReferral = getReferral(mi_td);
+
+
+
+	// get cookies
+
+	var	firstCookie = getCookie("mi_first_referral"),
+		lastCookie = getCookie("mi_last_referral");
+
+
+
+	// set cookies
+
+	if (newReferral) {
+
+		setCookie(mi_td, "mi_last_referral", JSON.stringify(newReferral));
+
+		if (!firstCookie) {
+
+			setCookie(mi_td, "mi_first_referral", JSON.stringify(newReferral));
+
+		}
+
+	}
+
+
+
+
+
+
+
+
+	
+/*
 	// use utm or referrer
 
 	if (hash_utm_source || hash_utm_medium || hash_utm_term || hash_utm_content || hash_utm_campaign) {
@@ -232,6 +272,13 @@
 		}
 
 	}
+*/
+
+
+
+
+
+
 
 	// use cookies or variables
 
