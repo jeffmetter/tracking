@@ -98,30 +98,31 @@
 
 	var newReferral = getReferral(mi_td);
 
-	// get cookies
 
-	var lastCookie = getCookie("mi_last_referral"),
-		firstCookie = getCookie("mi_first_referral");
+	// track referral
 
+	function calculateLast(n) {
+		var l = getCookie("mi_last_referral");
+		if (n) {
+			setCookie(mi_td, "mi_last_referral", JSON.stringify(n));
+			return n;
+		} else if (l) {
+			return JSON.parse(l);
+		}
+	}
+	function calculateFirst(n) {
+		var f = getCookie("mi_last_referral");
+		if (f) {
+			return JSON.parse(f);
+		} else if (n) {
+			setCookie(mi_td, "mi_first_referral", JSON.stringify(n));
+			return n;
+		}
+	}
 
-	// track referrals
+	var trackLast = calculateLast(newReferral);
+	var trackFirst = calculateFirst(newReferral);
 
-	var trackFirst,
-		trackLast;
-
-	if (newReferral) {
-		trackLast = newReferral;
-		setCookie(mi_td, "mi_last_referral", JSON.stringify(newReferral));
-	} else if (lastCookie) {
-		trackLast = JSON.parse(lastCookie);
-	} 
-
-	if (firstCookie) {
-		trackFirst = JSON.parse(firstCookie);
-	} else if (newReferral) {
-		trackFirst = newReferral;
-		setCookie(mi_td, "mi_first_referral", JSON.stringify(newReferral));
-	} 
 
 	if (trackFirst || trackLast) {
 
