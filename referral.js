@@ -213,7 +213,7 @@
 
 		new_values = true;
 
-	} else if (referrer_source && referrer_source.indexOf('.workstride.com') == -1) {
+	} else if (referrer_source && referrer_source.indexOf(mi_td) == -1) {
 
 		track_source = referrer_source;
 		track_medium = '-';
@@ -223,7 +223,7 @@
 
 		new_values = true;
 
-	} else if (referrer_source.indexOf('.workstride.com') == -1) {
+	} else if (referrer_source.indexOf(mi_td) == -1) {
 
 		track_source = 'Web Form';
 		track_medium = '-';
@@ -239,19 +239,19 @@
 
 	if (new_values) {
 
-		setCookie('mi_last_source', track_source);
-		setCookie('mi_last_medium', track_medium);
-		setCookie('mi_last_term', track_term);
-		setCookie('mi_last_content', track_content);
-		setCookie('mi_last_campaign', track_campaign);
+		setCookie(mi_td, 'mi_last_source', track_source);
+		setCookie(mi_td, 'mi_last_medium', track_medium);
+		setCookie(mi_td, 'mi_last_term', track_term);
+		setCookie(mi_td, 'mi_last_content', track_content);
+		setCookie(mi_td, 'mi_last_campaign', track_campaign);
 
 		if (!getCookie('mi_first_source')) {
 
-			setCookie('mi_first_source', track_source);
-			setCookie('mi_first_medium', track_medium);
-			setCookie('mi_first_term', track_term);
-			setCookie('mi_first_content', track_content);
-			setCookie('mi_first_campaign', track_campaign);
+			setCookie(mi_td, 'mi_first_source', track_source);
+			setCookie(mi_td, 'mi_first_medium', track_medium);
+			setCookie(mi_td, 'mi_first_term', track_term);
+			setCookie(mi_td, 'mi_first_content', track_content);
+			setCookie(mi_td, 'mi_first_campaign', track_campaign);
 
 		}
 
