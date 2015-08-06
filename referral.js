@@ -136,13 +136,13 @@
 
 
 
-/*
+
 
 	// use cookie or referral
 
 	var	trackFirst,
 		trackLast;
-
+/*
 	if (firstCookie) {
 		trackFirst = JSON.parse(firstCookie);
 	} else if (newReferral) {
@@ -164,7 +164,7 @@
 
 	// add values to forms
 
-	if (has_values) {
+	if (trackFirst || trackLast) {
 
 		// populate form inputs
 
