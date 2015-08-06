@@ -120,8 +120,9 @@
 		}
 	}
 
-	var trackLast = calculateLast(newReferral);
 	var trackFirst = calculateFirst(newReferral);
+	var trackLast = calculateLast(newReferral);
+	
 
 
 	if (trackFirst || trackLast) {
