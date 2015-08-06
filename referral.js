@@ -116,7 +116,7 @@
 	if (firstCookie) {
 		trackFirst = JSON.parse(firstCookie);
 	} else if (newReferral) {
-		setCookie(domain, "mi_first_referral", JSON.stringify(newReferral));
+		setCookie(mi_td, "mi_first_referral", JSON.stringify(newReferral));
 		trackFirst = newReferral;
 	}
 
@@ -124,7 +124,7 @@
 		trackLast;
 
 	if (newReferral) {
-		setCookie(domain, "mi_last_referral", JSON.stringify(newReferral));
+		setCookie(mi_td, "mi_last_referral", JSON.stringify(newReferral));
 		trackLast = newReferral;
 	} else if (lastCookie) {
 		trackLast = JSON.parse(lastCookie);
