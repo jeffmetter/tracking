@@ -57,6 +57,11 @@
 		this.term = term;
 		this.content = content;
 		this.campaign = campaign;
+
+		this.getVal = function(v) {
+			return this.v ? this.v : "-";
+		}
+
 	}
 
 	// get referral
@@ -75,18 +80,8 @@
 			qn = getQuery("utm_campaign"),
 			n;
 		if (hs || hm || ht || hc || hn) {
-			if (!hs) hs = "-";
-			if (!hm) hm = "-";
-			if (!ht) ht = "-";
-			if (!hc) hc = "-";
-			if (!hn) hn = "-";
 			n = new Referral(hs, hm, ht, hc, hn);
 		} else if (qs || qm || qt || qc || qn) {
-			if (!qs) qs = "-";
-			if (!qm) qm = "-";
-			if (!qt) qt = "-";
-			if (!qc) qc = "-";
-			if (!qn) qn = "-";
 			n = new Referral(qs, qm, qt, qc, qn);
 		} else if (ref && ref.indexOf(domain) == -1) {
 			n = new Referral(ref, "-", "-", "-", "-");
@@ -134,16 +129,16 @@
 			}
 		}
 
-		setValue(mi_fs, trackFirst["source"]);
-		setValue(mi_fm, trackFirst["medium"]);
-		setValue(mi_ft, trackFirst["term"]);
-		setValue(mi_fc, trackFirst["content"]);
-		setValue(mi_fn, trackFirst["campaign"]);
-		setValue(mi_ls, trackLast["source"]);
-		setValue(mi_lm, trackLast["medium"]);
-		setValue(mi_lt, trackLast["term"]);
-		setValue(mi_lc, trackLast["content"]);
-		setValue(mi_ln, trackLast["campaign"]);
+		setValue(mi_fs, trackFirst.getVal("source"));
+		setValue(mi_fm, trackFirst.getVal("medium"));
+		setValue(mi_ft, trackFirst.getVal("term"));
+		setValue(mi_fc, trackFirst.getVal("content"));
+		setValue(mi_fn, trackFirst.getVal("campaign"));
+		setValue(mi_ls, trackLast.getVal("source"));
+		setValue(mi_lm, trackLast.getVal("medium"));
+		setValue(mi_lt, trackLast.getVal("term"));
+		setValue(mi_lc, trackLast.getVal("content"));
+		setValue(mi_ln, trackLast.getVal("campaign"));
 
 		// populate pardot iframes
 
