@@ -93,11 +93,11 @@
 		} else if (ref && ref.indexOf(domain) == -1) {
 
 			n = new Referral(ref, "-", "-", "-", "-");
-
+/*
 		} else if (ref.indexOf(domain) == -1) {
 
 			n = new Referral("Web Form", "-", "-", "-", "-");
-
+*/
 		}
 
 		return n;
