@@ -139,10 +139,10 @@
 
 
 	// use cookie or referral
-/*
-	var	trackFirst,
-		trackLast;
 
+	var	trackFirst = false,
+		trackLast = false;
+/*
 	if (firstCookie) {
 		trackFirst = JSON.parse(firstCookie);
 	} else if (newReferral) {
