@@ -99,7 +99,7 @@
 			n = new Referral("Web Form", "-", "-", "-", "-");
 
 		}
-		
+
 		return n;
 
 	}
@@ -140,15 +140,23 @@
 		trackLast;
 
 	if (firstCookie) {
+
 		trackFirst = JSON.parse(firstCookie);
+
 	} else if (newReferral) {
+
 		trackFirst = newReferral;
+
 	}
 
 	if (newReferral) {
+
 		trackLast = newReferral;
+
 	} else if (lastCookie) {
+
 		trackLast = JSON.parse(lastCookie);
+		
 	}
 
 
