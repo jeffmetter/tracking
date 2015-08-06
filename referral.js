@@ -306,7 +306,7 @@
 
 
 
-
+/*
 	// add values to forms
 
 	if (has_values) {
@@ -363,7 +363,7 @@
 		}
 
 	}
-
+*/
 	removeUtms();
 
 })();
