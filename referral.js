@@ -101,15 +101,6 @@
 
 	// track referral
 
-	function calculateLast(n) {
-		var l = getCookie("mi_last_referral");
-		if (n) {
-			setCookie(mi_td, "mi_last_referral", JSON.stringify(n));
-			return n;
-		} else if (l) {
-			return JSON.parse(l);
-		}
-	}
 	function calculateFirst(n) {
 		var f = getCookie("mi_last_referral");
 		if (f) {
@@ -119,12 +110,18 @@
 			return n;
 		}
 	}
-
+	function calculateLast(n) {
+		var l = getCookie("mi_last_referral");
+		if (n) {
+			setCookie(mi_td, "mi_last_referral", JSON.stringify(n));
+			return n;
+		} else if (l) {
+			return JSON.parse(l);
+		}
+	}
 	var trackFirst = calculateFirst(newReferral);
 	var trackLast = calculateLast(newReferral);
 	
-
-
 	if (trackFirst || trackLast) {
 
 		// populate form inputs
