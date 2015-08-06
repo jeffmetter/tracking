@@ -99,12 +99,12 @@
 			n = new Referral("Web Form", "-", "-", "-", "-");
 
 		}
-
+		
 		return n;
 
 	}
 
-/*
+
 
 	// get referral 
 
@@ -151,165 +151,11 @@
 		trackLast = JSON.parse(lastCookie);
 	}
 
-*/
 
 
-
-
-	var referrer_source = document.referrer;
-
-	var hash_utm_source = getHash('utm_source');
-	var hash_utm_medium = getHash('utm_medium');
-	var hash_utm_term = getHash('utm_term');
-	var hash_utm_content = getHash('utm_content');
-	var hash_utm_campaign = getHash('utm_campaign');
-
-	var query_utm_source = getQuery('utm_source');
-	var query_utm_medium = getQuery('utm_medium');
-	var query_utm_term = getQuery('utm_term');
-	var query_utm_content = getQuery('utm_content');
-	var query_utm_campaign = getQuery('utm_campaign');
-
-	var new_values = false;
-	var has_values = false;
-
-	var track_source = '';
-	var track_medium = '';
-	var track_term = '';
-	var track_content = '';
-	var track_campaign = '';
-
-	var first_source = '';
-	var first_medium = '';
-	var firs_term = '';
-	var first_content = '';
-	var first_campaign = '';
-
-	var last_source = '';
-	var last_medium = '';
-	var last_term = '';
-	var last_content = '';
-	var last_campaign = '';
-
-	// use utm or referrer
-
-	if (hash_utm_source || hash_utm_medium || hash_utm_term || hash_utm_content || hash_utm_campaign) {
-
-		if (hash_utm_source) track_source = hash_utm_source;
-		if (hash_utm_medium) track_medium = hash_utm_medium;
-		if (hash_utm_term) track_term = hash_utm_term;
-		if (hash_utm_content) track_content = hash_utm_content;
-		if (hash_utm_campaign) track_campaign = hash_utm_campaign;
-
-		new_values = true;
-
-	} else if (query_utm_source || query_utm_medium || query_utm_term || query_utm_content || query_utm_campaign) {
-
-		if (query_utm_source) track_source = query_utm_source;
-		if (query_utm_medium) track_medium = query_utm_medium;
-		if (query_utm_term) track_term = query_utm_term;
-		if (query_utm_content) track_content = query_utm_content;
-		if (query_utm_campaign) track_campaign = query_utm_campaign;
-
-		new_values = true;
-
-	} else if (referrer_source && referrer_source.indexOf(mi_td) == -1) {
-
-		track_source = referrer_source;
-		track_medium = '-';
-		track_term = '-';
-		track_content = '-';
-		track_campaign = '-';
-
-		new_values = true;
-
-	} else if (referrer_source.indexOf(mi_td) == -1) {
-
-		track_source = 'Web Form';
-		track_medium = '-';
-		track_term = '-';
-		track_content = '-';
-		track_campaign = '-';
-
-		new_values = true;
-
-	}
-
-	// set cookies
-
-	if (new_values) {
-
-		setCookie(mi_td, 'mi_last_source', track_source);
-		setCookie(mi_td, 'mi_last_medium', track_medium);
-		setCookie(mi_td, 'mi_last_term', track_term);
-		setCookie(mi_td, 'mi_last_content', track_content);
-		setCookie(mi_td, 'mi_last_campaign', track_campaign);
-
-		if (!getCookie('mi_first_source')) {
-
-			setCookie(mi_td, 'mi_first_source', track_source);
-			setCookie(mi_td, 'mi_first_medium', track_medium);
-			setCookie(mi_td, 'mi_first_term', track_term);
-			setCookie(mi_td, 'mi_first_content', track_content);
-			setCookie(mi_td, 'mi_first_campaign', track_campaign);
-
-		}
-
-	}
-
-	// use cookies or variables
-
-	if (new_values) {
-
-		var last_source = track_source;
-		var last_medium = track_medium;
-		var last_term = track_term;
-		var last_content = track_content;
-		var last_campaign = track_campaign;
-
-		has_values = true;
-
-	} else if (getCookie('mi_last_source')) {
-
-		var last_source = getCookie('mi_last_source');
-		var last_medium = getCookie('mi_last_medium');
-		var last_term = getCookie('mi_last_term');
-		var last_content = getCookie('mi_last_content');
-		var last_campaign = getCookie('mi_last_campaign');
-
-		has_values = true;
-
-	} 
-
-	if (new_values && !getCookie('mi_first_source')) {
-
-		var first_source = track_source;
-		var first_medium = track_medium;
-		var first_term = track_term;
-		var first_content = track_content;
-		var first_campaign = track_campaign;
-
-		has_values = true;
-
-	} else if (getCookie('mi_first_source')) {
-
-		var first_source = getCookie('mi_first_source');
-		var first_medium = getCookie('mi_first_medium');
-		var first_term = getCookie('mi_first_term');
-		var first_content = getCookie('mi_first_content');
-		var first_campaign = getCookie('mi_first_campaign');
-
-		has_values = true;
-
-	}
-
-
-
-
-/*
 	// add values to forms
 
-	if (has_values) {
+	if (trackFirst || trackLast) {
 
 		// populate form inputs
 
@@ -363,7 +209,7 @@
 		}
 
 	}
-*/
+
 	removeUtms();
 
 })();
