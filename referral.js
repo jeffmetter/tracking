@@ -195,41 +195,25 @@
 
 	if (hash_utm_source || hash_utm_medium || hash_utm_term || hash_utm_content || hash_utm_campaign) {
 
-		if (hash_utm_source) track_source = hash_utm_source;
-		if (hash_utm_medium) track_medium = hash_utm_medium;
-		if (hash_utm_term) track_term = hash_utm_term;
-		if (hash_utm_content) track_content = hash_utm_content;
-		if (hash_utm_campaign) track_campaign = hash_utm_campaign;
+		var newTestReferral = new Referral(hash_utm_source, hash_utm_medium, hash_utm_term, hash_utm_content, hash_utm_campaign);
 
 		new_values = true;
 
 	} else if (query_utm_source || query_utm_medium || query_utm_term || query_utm_content || query_utm_campaign) {
 
-		if (query_utm_source) track_source = query_utm_source;
-		if (query_utm_medium) track_medium = query_utm_medium;
-		if (query_utm_term) track_term = query_utm_term;
-		if (query_utm_content) track_content = query_utm_content;
-		if (query_utm_campaign) track_campaign = query_utm_campaign;
+		var newTestReferral = new Referral(query_utm_source, query_utm_medium, query_utm_term, query_utm_content, query_utm_campaign);
 
 		new_values = true;
 
 	} else if (referrer_source && referrer_source.indexOf(mi_td) == -1) {
 
-		track_source = referrer_source;
-		track_medium = '-';
-		track_term = '-';
-		track_content = '-';
-		track_campaign = '-';
+		var newTestReferral = new Referral(referrer_source, '-', '-', '-', '-');
 
 		new_values = true;
 
 	} else if (referrer_source.indexOf(mi_td) == -1) {
 
-		track_source = 'Web Form';
-		track_medium = '-';
-		track_term = '-';
-		track_content = '-';
-		track_campaign = '-';
+		var newTestReferral = new Referral('Web Form', '-', '-', '-', '-');
 
 		new_values = true;
 
@@ -239,19 +223,11 @@
 
 	if (new_values) {
 
-		setCookie(mi_td, 'mi_last_source', track_source);
-		setCookie(mi_td, 'mi_last_medium', track_medium);
-		setCookie(mi_td, 'mi_last_term', track_term);
-		setCookie(mi_td, 'mi_last_content', track_content);
-		setCookie(mi_td, 'mi_last_campaign', track_campaign);
+		setCookie(mi_td, "mi_last_referral", JSON.stringify(newTestReferral));
 
 		if (!getCookie('mi_first_source')) {
 
-			setCookie(mi_td, 'mi_first_source', track_source);
-			setCookie(mi_td, 'mi_first_medium', track_medium);
-			setCookie(mi_td, 'mi_first_term', track_term);
-			setCookie(mi_td, 'mi_first_content', track_content);
-			setCookie(mi_td, 'mi_first_campaign', track_campaign);
+			setCookie(mi_td, "mi_first_referral", JSON.stringify(newTestReferral));
 
 		}
 
