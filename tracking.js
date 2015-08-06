@@ -199,7 +199,7 @@ var miGetUtms = function() {
 		has_values = true;
 
 	}
-
+/*
 	if (has_values) {
 
 		// clean bing
@@ -234,12 +234,12 @@ var miGetUtms = function() {
 		});
 
 	}
-
+*/
 };
 
-jQuery(document).ready(function() {
+
 
 	miGetUtms();
 	miRemoveUtms();
 
-});
+
