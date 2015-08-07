@@ -94,6 +94,10 @@
 
 			n = new Referral(ref, "-", "-", "-", "-");
 
+		} else if (ref.indexOf(domain) == -1) {
+
+			n = new Referral("Web Form", "-", "-", "-", "-");
+
 		}
 
 		return n;
@@ -155,11 +159,6 @@
 		trackFirst = JSON.parse(firstCookie);
 
 		trackLast = JSON.parse(lastCookie);
-
-	} else {
-
-		trackFirst = new Referral("Web Form", "-", "-", "-", "-");
-		trackLast = new Referral("Web Form", "-", "-", "-", "-");
 
 	}
 
