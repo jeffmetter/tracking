@@ -138,7 +138,7 @@
 
 	if (newReferral) {
 
-		trackLast = JSON.parse(newReferral);
+		trackLast = newReferral;
 
 		if (firstCookie) {
 
@@ -146,7 +146,7 @@
 
 		} else {
 
-			trackFirst = JSON.parse(newReferral);
+			trackFirst = newReferral;
 
 		}
 
