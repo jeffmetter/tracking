@@ -70,7 +70,7 @@
 			qt = getQuery("utm_term"),
 			qc = getQuery("utm_content"),
 			qn = getQuery("utm_campaign"),
-			n = false;
+			n;
 
 		if (hs || hm || ht || hc || hn) {
 
@@ -93,6 +93,10 @@
 		} else if (ref && ref.indexOf(domain) == -1) {
 
 			n = new Referral(ref, "-", "-", "-", "-");
+
+		// } else if (ref.indexOf(domain) == -1) {
+
+			// n = new Referral("Web Form", "-", "-", "-", "-");
 
 		}
 
@@ -130,36 +134,28 @@
 	}
 
 
+	// use cookie or referral
 
-	// figure out whch values to track
+	var	trackFirst,
+		trackLast;
 
-	var trackFirst = false,
-		trackLast = false;
-
-	if (newReferral) {
-
-		trackLast = JSON.parse(newReferral);
-
-		if (firstCookie) {
-
-			trackFirst = JSON.parse(firstCookie);
-
-		} else {
-
-			trackFirst = JSON.parse(newReferral);
-
-		}
-
-	} else if (firstCookie && lastCookie) {
+	if (firstCookie) {
 
 		trackFirst = JSON.parse(firstCookie);
 
+	} else if (newReferral) {
+
+		trackFirst = newReferral;
+
+	}
+
+	if (newReferral) {
+
+		trackLast = newReferral;
+
+	} else if (lastCookie) {
+
 		trackLast = JSON.parse(lastCookie);
-
-	} else {
-
-		trackFirst = new Referral("Web Form", "-", "-", "-", "-");
-		trackLast = new Referral("Web Form", "-", "-", "-", "-");
 
 	}
 
@@ -167,7 +163,7 @@
 
 	// add values to forms
 
-	if (trackFirst && trackLast) {
+	if (trackFirst || trackLast) {
 
 		// populate form inputs
 
