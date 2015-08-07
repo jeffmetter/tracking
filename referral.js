@@ -94,7 +94,7 @@
 
 			n = new Referral(ref, "-", "-", "-", "-");
 
-		} else if (ref.indexOf(domain) == -1) {
+		} else if (!ref) {
 
 			n = new Referral("Web Form", "-", "-", "-", "-");
 
