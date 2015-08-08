@@ -99,28 +99,22 @@
 
 			n = new Referral(ref, "-", "-", "-", "-");
 
-		} else if (!ref) {
-
-			n = new Referral("Web Form", "-", "-", "-", "-");
-
 		}
 
 		return n;
 
 	}
 
-
-
 	// get referral 
 
 	var newReferral = getReferral(mi_td);
-
-
 
 	// get cookies
 
 	var	firstCookie = getCookie("mi_first_referral"),
 		lastCookie = getCookie("mi_last_referral");
+
+
 
 
 
@@ -140,32 +134,40 @@
 
 
 
-	// figure out whch values to track
+	// track values
 
 	var trackFirst = false,
 		trackLast = false;
 
-	if (newReferral) {
-
-		trackLast = newReferral;
-
-		if (firstCookie) {
-
-			trackFirst = JSON.parse(firstCookie);
-
-		} else {
-
-			trackFirst = newReferral;
-
-		}
-
-	} else if (firstCookie && lastCookie) {
+	if (firstCookie) {
 
 		trackFirst = JSON.parse(firstCookie);
 
+	} else if (newReferral) {
+
+		trackFirst = newReferral;
+
+	} else {
+
+		trackFirst = new Referral("Web Form", "-", "-", "-", "-");
+		
+	}
+
+	if (lastCookie) {
+
 		trackLast = JSON.parse(lastCookie);
 
+	} else if (newReferral) {
+
+		trackLast = newReferral;
+
+	} else {
+
+		trackLast = new Referral("Web Form", "-", "-", "-", "-");
+
 	}
+
+
 
 
 
