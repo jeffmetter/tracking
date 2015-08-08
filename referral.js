@@ -1,38 +1,43 @@
 (function () {
 
-	function getHash(variable) {
+	function getHash(key) {
 		var query = window.location.hash.substring(1);
-		var vars = query.split("&");
-		for (var i = 0; i < vars.length; i++) {
-			var pair = vars[i].split("=");
-			if (pair[0] == variable) return pair[1];
+		var pars = query.split("&");
+		for (var i = 0; i < pars.length; i++) {
+			var values = pars[i].split("=");
+			if (values[0] == key) return values[1];
 		}
 		return (false);
 	}
 
-	function getQuery(variable) {
+	function getQuery(key) {
 		var query = window.location.search.substring(1);
-		var vars = query.split("&");
-		for (var i = 0; i < vars.length; i++) {
-			var pair = vars[i].split("=");
-			if (pair[0] == variable) return pair[1];
+		var pars = query.split("&");
+		for (var i = 0; i < pars.length; i++) {
+			var values = pars[i].split("=");
+			if (values[0] == key) return values[1];
 		}
 		return (false);
 	}
 
-	function setCookie(cdomain, cname, cvalue) {
-		var now = new Date();
-		var time = now.getTime();
-		time += 180*24*60*60*1000;
-		now.setTime(time);
-		document.cookie = cname + "=" + cvalue + "; expires=" + now.toUTCString() + "; domain=" + cdomain + "; path=/";
+	function setCookie(name, value, expires, domain) {
+		var cookie = name + "=" + value + ";";
+		if (expires) {
+			var d = new Date();
+			d.setTime(d.getTime() + (expires*24*60*60*1000));
+			cookie += "expires=" + d.toUTCString() + ";";
+		}
+		cookie += "domain=" + domain + ";";
+		cookie += "path=/";
+		document.cookie = cookie;
 	}
 
-	function getCookie(cname) {
-		var name = cname + "=";
+	function getCookie(name) {
+		var name = name + "=";
 		var ca = document.cookie.split(";");
-		for (var i = 0; i < ca.length; i++) {
-			var c = ca[i].trim();
+		for(var i = 0; i < ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0)==" ") c = c.substring(1);
 			if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
 		}
 		return "";
@@ -123,11 +128,11 @@
 
 	if (newReferral) {
 
-		setCookie(mi_td, "mi_last_referral", JSON.stringify(newReferral));
+		setCookie("mi_last_referral", JSON.stringify(newReferral), false, mi_td);
 
 		if (!firstCookie) {
 
-			setCookie(mi_td, "mi_first_referral", JSON.stringify(newReferral));
+			setCookie("mi_first_referral", JSON.stringify(newReferral), 180, mi_td);
 
 		}
 
