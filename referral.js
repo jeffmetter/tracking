@@ -117,23 +117,6 @@
 
 
 
-
-	// set cookies
-
-	if (newReferral) {
-
-		setCookie("mi_last_referral", JSON.stringify(newReferral), false, mi_td);
-
-		if (!firstCookie) {
-
-			setCookie("mi_first_referral", JSON.stringify(newReferral), 180, mi_td);
-
-		}
-
-	}
-
-
-
 	// track values
 
 	var trackFirst = false,
@@ -146,10 +129,12 @@
 	} else if (newReferral) {
 
 		trackFirst = newReferral;
+		setCookie("mi_first_referral", JSON.stringify(trackFirst), 180, mi_td);
 
 	} else {
 
 		trackFirst = new Referral("Web Form", "-", "-", "-", "-");
+		setCookie("mi_first_referral", JSON.stringify(trackFirst), 180, mi_td);
 		
 	}
 
@@ -160,10 +145,12 @@
 	} else if (newReferral) {
 
 		trackLast = newReferral;
+		setCookie("mi_last_referral", JSON.stringify(trackLast), false, mi_td);
 
 	} else {
 
 		trackLast = new Referral("Web Form", "-", "-", "-", "-");
+		setCookie("mi_last_referral", JSON.stringify(trackLast), false, mi_td);
 
 	}
 
