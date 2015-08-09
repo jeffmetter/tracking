@@ -107,35 +107,57 @@
 
 	(function () {
 
-		var nr = getReferral(mi_td),
-			fr = getCookie("mi_first_referral"),
-			lr = getCookie("mi_last_referral"),
-			tf = false,
-			tl = false;
+		var newReferral = getReferral(mi_td),
+			cFirst = getCookie("mi_first_referral"),
+			cLast = getCookie("mi_last_referral"),
+			tFirst = false,
+			tLast = false;
 
-		if (fr) {
-			tf = JSON.parse(fr);
-		} else if (nr) {
-			tf = nr;
-			setCookie("mi_first_referral", JSON.stringify(tf), 180, mi_td);
+		// Get first referral
+		// Check for 'mi_first_referral' cookie
+		// Check for newReferral
+		// Otherwise set default values
+
+		if (cfirst) {
+
+			tFirst = JSON.parse(cfirst);
+
+		} else if (newReferral) {
+
+			tFirst = newReferral;
+			setCookie("mi_first_referral", JSON.stringify(tFirst), 180, mi_td);
+
 		} else {
-			tf = new Referral("Web Form", "-", "-", "-", "-");
-			setCookie("mi_first_referral", JSON.stringify(tf), 180, mi_td);
+
+			tFirst = new Referral("Web Form", "-", "-", "-", "-");
+			setCookie("mi_first_referral", JSON.stringify(tFirst), 180, mi_td);
+
 		}
 
-		if (lr) {
-			tl = JSON.parse(lr);
-		} else if (nr) {
-			tl = nr;
-			setCookie("mi_last_referral", JSON.stringify(tl), false, mi_td);
+		// Get last referral
+		// Check for 'mi_last_referral' cookie
+		// Check for newReferral
+		// Otherwise set default values
+
+		if (clast) {
+
+			tLast = JSON.parse(clast);
+
+		} else if (newReferral) {
+
+			tLast = newReferral;
+			setCookie("mi_last_referral", JSON.stringify(tLast), false, mi_td);
+
 		} else {
-			tl = new Referral("Web Form", "-", "-", "-", "-");
-			setCookie("mi_last_referral", JSON.stringify(tl), false, mi_td);
+
+			tLast = new Referral("Web Form", "-", "-", "-", "-");
+			setCookie("mi_last_referral", JSON.stringify(tLast), false, mi_td);
+
 		}
 
-		if (tf && tl) {
+		if (tFirst && tLast) {
 
-			// populate form inputs
+			// Populate form inputs
 
 			function setValue(iname, ivalue) {
 				var input = document.getElementsByName(iname);
@@ -144,18 +166,18 @@
 				}
 			}
 
-			setValue(mi_fs, tf["source"]);
-			setValue(mi_fm, tf["medium"]);
-			setValue(mi_ft, tf["term"]);
-			setValue(mi_fc, tf["content"]);
-			setValue(mi_fn, tf["campaign"]);
-			setValue(mi_ls, tl["source"]);
-			setValue(mi_lm, tl["medium"]);
-			setValue(mi_lt, tl["term"]);
-			setValue(mi_lc, tl["content"]);
-			setValue(mi_ln, tl["campaign"]);
+			setValue(mi_fs, tFirst["source"]);
+			setValue(mi_fm, tFirst["medium"]);
+			setValue(mi_ft, tFirst["term"]);
+			setValue(mi_fc, tFirst["content"]);
+			setValue(mi_fn, tFirst["campaign"]);
+			setValue(mi_ls, tLast["source"]);
+			setValue(mi_lm, tLast["medium"]);
+			setValue(mi_lt, tLast["term"]);
+			setValue(mi_lc, tLast["content"]);
+			setValue(mi_ln, tLast["campaign"]);
 
-			// populate pardot iframes
+			// Populate Pardot iframes
 
 			function setUrl (domain) {
 				var iframes = document.getElementsByTagName("iframe");
@@ -165,16 +187,16 @@
 						var amp = (iframes[i].src.indexOf("?") > -1 ? "&" : "?");
 						var url = iframes[i].src;
 
-						url += amp+mi_fs+"="+encodeURI(tf["source"]);
-						url += "&"+mi_fm+"="+encodeURI(tf["medium"]);
-						url += "&"+mi_ft+"="+encodeURI(tf["term"]);
-						url += "&"+mi_fc+"="+encodeURI(tf["content"]);
-						url += "&"+mi_fn+"="+encodeURI(tf["campaign"]);
-						url += "&"+mi_ls+"="+encodeURI(tl["source"]);
-						url += "&"+mi_lm+"="+encodeURI(tl["medium"]);
-						url += "&"+mi_lt+"="+encodeURI(tl["term"]);
-						url += "&"+mi_lc+"="+encodeURI(tl["content"]);
-						url += "&"+mi_ln+"="+encodeURI(tl["campaign"]);
+						url += amp+mi_fs+"="+encodeURI(tFirst["source"]);
+						url += "&"+mi_fm+"="+encodeURI(tFirst["medium"]);
+						url += "&"+mi_ft+"="+encodeURI(tFirst["term"]);
+						url += "&"+mi_fc+"="+encodeURI(tFirst["content"]);
+						url += "&"+mi_fn+"="+encodeURI(tFirst["campaign"]);
+						url += "&"+mi_ls+"="+encodeURI(tLast["source"]);
+						url += "&"+mi_lm+"="+encodeURI(tLast["medium"]);
+						url += "&"+mi_lt+"="+encodeURI(tLast["term"]);
+						url += "&"+mi_lc+"="+encodeURI(tLast["content"]);
+						url += "&"+mi_ln+"="+encodeURI(tLast["campaign"]);
 
 						iframes[i].src = url;
 
@@ -188,6 +210,7 @@
 
 		}
 
+		// Clean url
 		removeUtms();
 
 	})();
