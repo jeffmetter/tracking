@@ -109,7 +109,7 @@
 
 	}
 
-	(function () {
+	function trackReferrals() {
 
 		var mi = miReferralTracker,
 			newReferral = getReferral(mi.td),
@@ -226,6 +226,14 @@
 		// Clean url
 		removeUtms();
 
-	})();
+	}
+
+	if (window.addEventListener) {
+		window.addEventListener("load", trackReferrals(), false);
+	} else if (window.attachEvent) {
+		window.attachEvent("onload", trackReferrals());
+	} else {
+		trackReferrals();
+	}
 
 })();
