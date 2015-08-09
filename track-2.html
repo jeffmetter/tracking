@@ -29,26 +29,29 @@ MI Digital Agency Tracking <a href="track.html">link</a>
 
 <script type="text/javascript">
 
-var mi_td = 'midigitalagency.com';
-var mi_pu = 'go.midigitalagency.com';
-var mi_fs = 'utmz_source';
-var mi_fm = 'utmz_medium';
-var mi_ft = 'utmz_term';
-var mi_fc = 'utmz_content';
-var mi_fn = 'utmz_campaign';
-var mi_ls = 'Last_Source';
-var mi_lm = 'Last_Medium';
-var mi_lt = 'Last_Term';
-var mi_lc = 'Last_Content';
-var mi_ln = 'Last_Campaign';
-
 (function(){
 s=document.createElement('script');
 s.async=1;
 s.src='//midigitalagency.github.io/tracking/referral.js';
 n=document.getElementsByTagName('script')[0];
 n.parentNode.insertBefore(s,n);
+//document.body.appendChild(s);
 })();
+
+var miReferralTracker = {
+td: 'midigitalagency.github.io',
+pu: 'go.midigitalagency.com',
+fs: 'utmz_source',
+fm: 'utmz_medium',
+ft: 'utmz_term',
+fc: 'utmz_content',
+fn: 'utmz_campaign',
+ls: 'Last_Source',
+lm: 'Last_Medium',
+lt: 'Last_Term',
+lc: 'Last_Content',
+ln: 'Last_Campaign'
+};
 
 </script>
 
