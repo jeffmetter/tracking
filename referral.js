@@ -1,4 +1,4 @@
-(function () {
+function miTrackReferral() {
 
 	function getHash(key) {
 		var query = window.location.hash.substring(1);
@@ -215,4 +215,4 @@
 
 	})();
 
-})();
+}
