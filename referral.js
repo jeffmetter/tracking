@@ -75,7 +75,7 @@
 			qt = getQuery("utm_term"),
 			qc = getQuery("utm_content"),
 			qn = getQuery("utm_campaign"),
-			n = false;
+			n;
 
 		if (hs || hm || ht || hc || hn) {
 
@@ -99,6 +99,10 @@
 
 			n = new Referral(ref, "-", "-", "-", "-");
 
+		} else {
+
+			n = false;
+
 		}
 
 		return n;
@@ -107,7 +111,8 @@
 
 	(function () {
 
-		var newReferral = getReferral(miReferralTracker.td),
+		var mi = miReferralTracker,
+			newReferral = getReferral(mi.td),
 			cFirst = getCookie("mi_first_referral"),
 			cLast = getCookie("mi_last_referral"),
 			tFirst = false,
@@ -134,7 +139,7 @@
 
 			}
 
-			setCookie("mi_first_referral", JSON.stringify(tFirst), 180, miReferralTracker.td);
+			setCookie("mi_first_referral", JSON.stringify(tFirst), 180, mi.td);
 
 		}
 
@@ -159,7 +164,7 @@
 
 			}
 
-			setCookie("mi_last_referral", JSON.stringify(tLast), false, miReferralTracker.td);
+			setCookie("mi_last_referral", JSON.stringify(tLast), false, mi.td);
 
 		}
 
@@ -174,16 +179,16 @@
 				}
 			}
 
-			setValue(miReferralTracker.fs, tFirst["source"]);
-			setValue(miReferralTracker.fm, tFirst["medium"]);
-			setValue(miReferralTracker.ft, tFirst["term"]);
-			setValue(miReferralTracker.fc, tFirst["content"]);
-			setValue(miReferralTracker.fn, tFirst["campaign"]);
-			setValue(miReferralTracker.ls, tLast["source"]);
-			setValue(miReferralTracker.lm, tLast["medium"]);
-			setValue(miReferralTracker.lt, tLast["term"]);
-			setValue(miReferralTracker.lc, tLast["content"]);
-			setValue(miReferralTracker.ln, tLast["campaign"]);
+			setValue(mi.fs, tFirst["source"]);
+			setValue(mi.fm, tFirst["medium"]);
+			setValue(mi.ft, tFirst["term"]);
+			setValue(mi.fc, tFirst["content"]);
+			setValue(mi.fn, tFirst["campaign"]);
+			setValue(mi.ls, tLast["source"]);
+			setValue(mi.lm, tLast["medium"]);
+			setValue(mi.lt, tLast["term"]);
+			setValue(mi.lc, tLast["content"]);
+			setValue(mi.ln, tLast["campaign"]);
 
 			// Populate Pardot iframes
 
@@ -195,16 +200,16 @@
 						var amp = (iframes[i].src.indexOf("?") > -1 ? "&" : "?");
 						var url = iframes[i].src;
 
-						url += amp+miReferralTracker.fs+"="+encodeURI(tFirst["source"]);
-						url += "&"+miReferralTracker.fm+"="+encodeURI(tFirst["medium"]);
-						url += "&"+miReferralTracker.ft+"="+encodeURI(tFirst["term"]);
-						url += "&"+miReferralTracker.fc+"="+encodeURI(tFirst["content"]);
-						url += "&"+miReferralTracker.fn+"="+encodeURI(tFirst["campaign"]);
-						url += "&"+miReferralTracker.ls+"="+encodeURI(tLast["source"]);
-						url += "&"+miReferralTracker.lm+"="+encodeURI(tLast["medium"]);
-						url += "&"+miReferralTracker.lt+"="+encodeURI(tLast["term"]);
-						url += "&"+miReferralTracker.lc+"="+encodeURI(tLast["content"]);
-						url += "&"+miReferralTracker.ln+"="+encodeURI(tLast["campaign"]);
+						url += amp+mi.fs+"="+encodeURI(tFirst["source"]);
+						url += "&"+mi.fm+"="+encodeURI(tFirst["medium"]);
+						url += "&"+mi.ft+"="+encodeURI(tFirst["term"]);
+						url += "&"+mi.fc+"="+encodeURI(tFirst["content"]);
+						url += "&"+mi.fn+"="+encodeURI(tFirst["campaign"]);
+						url += "&"+mi.ls+"="+encodeURI(tLast["source"]);
+						url += "&"+mi.lm+"="+encodeURI(tLast["medium"]);
+						url += "&"+mi.lt+"="+encodeURI(tLast["term"]);
+						url += "&"+mi.lc+"="+encodeURI(tLast["content"]);
+						url += "&"+mi.ln+"="+encodeURI(tLast["campaign"]);
 
 						iframes[i].src = url;
 
@@ -212,8 +217,8 @@
 				}
 			}
 
-			if (miReferralTracker.pu) {
-				setUrl(miReferralTracker.pu);
+			if (mi.pu) {
+				setUrl(mi.pu);
 			}
 
 		}
