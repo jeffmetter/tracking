@@ -118,9 +118,9 @@
 		// Check for newReferral
 		// Otherwise set default values
 
-		if (cfirst) {
+		if (cFirst) {
 
-			tFirst = JSON.parse(cfirst);
+			tFirst = JSON.parse(cFirst);
 
 		} else if (newReferral) {
 
@@ -139,9 +139,9 @@
 		// Check for newReferral
 		// Otherwise set default values
 
-		if (clast) {
+		if (cLast) {
 
-			tLast = JSON.parse(clast);
+			tLast = JSON.parse(cLast);
 
 		} else if (newReferral) {
 
