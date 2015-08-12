@@ -227,7 +227,7 @@
 		removeUtms();
 
 	}
-/*
+
 	if (window.addEventListener) {
 		window.addEventListener("load", trackReferrals, false);
 	} else if (window.attachEvent) {
@@ -235,7 +235,5 @@
 	} else {
 		window.onload = trackReferrals;
 	}
-*/
-	window.onload = trackReferrals;
 
 })();
