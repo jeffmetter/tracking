@@ -226,6 +226,8 @@
 		// Clean url
 		removeUtms();
 
+		return true;
+
 	}
 
 	if (window.addEventListener) {
