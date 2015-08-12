@@ -226,14 +226,12 @@
 		// Clean url
 		removeUtms();
 
-		return true;
-
 	}
 
 	if (window.addEventListener) {
 		window.addEventListener("load", trackReferrals(), false);
 	} else if (window.attachEvent) {
-		window.attachEvent("onload", trackReferrals());
+		return window.attachEvent("onload", trackReferrals());
 	} else {
 		trackReferrals();
 	}
