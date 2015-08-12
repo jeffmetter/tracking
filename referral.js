@@ -35,7 +35,7 @@
 	function getCookie(name) {
 		var name = name + "=";
 		var ca = document.cookie.split(";");
-		for(var i = 0; i < ca.length; i++) {
+		for (var i = 0; i < ca.length; i++) {
 			var c = ca[i];
 			while (c.charAt(0)==" ") c = c.substring(1);
 			if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
@@ -172,10 +172,10 @@
 
 			// Populate form inputs
 
-			function setValue(iname, ivalue) {
-				var input = document.getElementsByName(iname);
+			function setValue(name, value) {
+				var input = document.getElementsByName(name);
 				for (var i = 0; i < input.length; i++) {
-					input[i].value = ivalue;
+					input[i].value = value;
 				}
 			}
 
