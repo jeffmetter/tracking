@@ -231,7 +231,7 @@
 	if (window.addEventListener) {
 		window.addEventListener("load", trackReferrals, false);
 	} else if (window.attachEvent) {
-		window.attachEvent("onload", trackReferrals;
+		window.attachEvent("onload", trackReferrals);
 	} else {
 		trackReferrals();
 	}
