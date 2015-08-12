@@ -229,9 +229,9 @@
 	}
 
 	if (window.addEventListener) {
-		window.addEventListener("load", trackReferrals(), false);
+		window.addEventListener("load", trackReferrals, false);
 	} else if (window.attachEvent) {
-		return window.attachEvent("onload", trackReferrals());
+		window.attachEvent("onload", trackReferrals;
 	} else {
 		trackReferrals();
 	}
