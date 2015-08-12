@@ -227,13 +227,15 @@
 		removeUtms();
 
 	}
-
+/*
 	if (window.addEventListener) {
 		window.addEventListener("load", trackReferrals, false);
 	} else if (window.attachEvent) {
 		window.attachEvent("onload", trackReferrals);
 	} else {
-		trackReferrals();
+		window.onload = trackReferrals;
 	}
+*/
+	window.onload = trackReferrals;
 
 })();
