@@ -1,5 +1,3 @@
-# Tracking
-
 ### Referral.js
 
 ```javascript
