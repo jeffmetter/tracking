@@ -1,6 +1,6 @@
 # tracking
 
-```
+```javascript
 <script type="text/javascript">
 (function(){
 s=document.createElement('script');
