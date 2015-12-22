@@ -1,6 +1,6 @@
 # tracking
 
-'''
+```
 <script type="text/javascript">
 (function(){
 s=document.createElement('script');
@@ -24,4 +24,4 @@ lc: 'Last_Content',
 ln: 'Last_Campaign'
 };
 </script>
-'''
+```
