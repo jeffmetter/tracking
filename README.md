@@ -1,4 +1,4 @@
-### Referral.js
+### referral.js
 
 ```javascript
 <script type="text/javascript">
