@@ -10,8 +10,8 @@ n=document.getElementsByTagName('script')[0];
 n.parentNode.insertBefore(s,n);
 })();
 var miReferralTracker = {
-td: 'midigitalagency.com',
-pu: 'go.midigitalagency.com',
+td: 'example.com',
+pu: 'go.example.com',
 fs: 'First_Source',
 fm: 'First_Medium',
 ft: 'First_Term',
