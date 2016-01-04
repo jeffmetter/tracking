@@ -173,10 +173,20 @@
 			// Populate form inputs
 
 			function setValue(name, value) {
+
+				// Normal inputs
 				var input = document.getElementsByName(name);
 				for (var i = 0; i < input.length; i++) {
 					input[i].value = value;
 				}
+
+				// Pardot inputs
+				var p = document.getElementsByClassName(name);
+				for (var i = 0; i < p.length; i++) {
+					input = p[i].children;
+					input[0].value = value;
+				}
+
 			}
 
 			setValue(mi.fs, tFirst["source"]);
@@ -189,27 +199,6 @@
 			setValue(mi.lt, tLast["term"]);
 			setValue(mi.lc, tLast["content"]);
 			setValue(mi.ln, tLast["campaign"]);
-
-			// Populate Pardot form inputs
-
-			function setPardotValue(name, value) {
-				var p = document.getElementsByClassName(name);
-				for (var i = 0; i < p.length; i++) {
-					input = p[i].children;
-					input[0].value = value;
-				}
-			}
-
-			setPardotValue(mi.fs, tFirst["source"]);
-			setPardotValue(mi.fm, tFirst["medium"]);
-			setPardotValue(mi.ft, tFirst["term"]);
-			setPardotValue(mi.fc, tFirst["content"]);
-			setPardotValue(mi.fn, tFirst["campaign"]);
-			setPardotValue(mi.ls, tLast["source"]);
-			setPardotValue(mi.lm, tLast["medium"]);
-			setPardotValue(mi.lt, tLast["term"]);
-			setPardotValue(mi.lc, tLast["content"]);
-			setPardotValue(mi.ln, tLast["campaign"]);
 
 			// Populate Pardot iframes
 
