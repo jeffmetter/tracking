@@ -113,74 +113,38 @@
 
 		var mi = miReferralTracker,
 			newReferral = getReferral(mi.td),
-			cFirst = getCookie("mi_first_referral"),
-			cLast = getCookie("mi_last_referral"),
-			tFirst = false,
+			cLast = getCookie("mi_referral"),
 			tLast = false;
 
-		// Get first referral
-		// Check for 'mi_first_referral' cookie
-		// Check for newReferral
-		// Otherwise set default values
-
-		if (cFirst) {
-
-			tFirst = JSON.parse(cFirst);
-
-		} else {
-
-			if (newReferral) {
-
-				tFirst = newReferral;
-
-			} else {
-
-				tFirst = new Referral("Web Form", "-", "-", "-", "-");
-
-			}
-
-			setCookie("mi_first_referral", JSON.stringify(tFirst), 180, mi.td);
-
-		}
-
 		// Get last referral
-		// Check for 'mi_last_referral' cookie
+		// Check for 'mi_referral' cookie
 		// Check for newReferral
-		// Otherwise set default values
 
 		if (cLast) {
 
 			tLast = JSON.parse(cLast);
 
-		} else {
+		} else if (newReferral) {
 
-			if (newReferral) {
+			tLast = newReferral;
 
-				tLast = newReferral;
-
-			} else {
-
-				tLast = new Referral("Web Form", "-", "-", "-", "-");
-
-			}
-
-			setCookie("mi_last_referral", JSON.stringify(tLast), false, mi.td);
+			setCookie("mi_referral", JSON.stringify(tLast), false, mi.td);
 
 		}
 
-		if (tFirst && tLast) {
+		if (tLast) {
 
-			// Populate form inputs
+			// Populate Pardot form handler and landing page forms
 
 			function setValue(name, value) {
 
-				// Normal inputs
+				// Form handler
 				var input = document.getElementsByName(name);
 				for (var i = 0; i < input.length; i++) {
 					input[i].value = value;
 				}
 
-				// Pardot inputs
+				// Landing page
 				var p = document.getElementsByClassName(name);
 				for (var i = 0; i < p.length; i++) {
 					input = p[i].children;
@@ -189,16 +153,23 @@
 
 			}
 
-			setValue(mi.fs, tFirst["source"]);
-			setValue(mi.fm, tFirst["medium"]);
-			setValue(mi.ft, tFirst["term"]);
-			setValue(mi.fc, tFirst["content"]);
-			setValue(mi.fn, tFirst["campaign"]);
+			setValue(mi.fs, tLast["source"]);
+			setValue(mi.fm, tLast["medium"]);
+			setValue(mi.ft, tLast["term"]);
+			setValue(mi.fc, tLast["content"]);
+			setValue(mi.fn, tLast["campaign"]);
+
 			setValue(mi.ls, tLast["source"]);
 			setValue(mi.lm, tLast["medium"]);
 			setValue(mi.lt, tLast["term"]);
 			setValue(mi.lc, tLast["content"]);
 			setValue(mi.ln, tLast["campaign"]);
+
+			setValue(mi.cs, tLast["source"]);
+			setValue(mi.cm, tLast["medium"]);
+			setValue(mi.ct, tLast["term"]);
+			setValue(mi.cc, tLast["content"]);
+			setValue(mi.cn, tLast["campaign"]);
 
 			// Populate Pardot iframes
 
@@ -210,16 +181,23 @@
 						var amp = (iframes[i].src.indexOf("?") > -1 ? "&" : "?");
 						var url = iframes[i].src;
 
-						url += amp+mi.fs+"="+encodeURI(tFirst["source"]);
-						url += "&"+mi.fm+"="+encodeURI(tFirst["medium"]);
-						url += "&"+mi.ft+"="+encodeURI(tFirst["term"]);
-						url += "&"+mi.fc+"="+encodeURI(tFirst["content"]);
-						url += "&"+mi.fn+"="+encodeURI(tFirst["campaign"]);
+						url += amp+mi.fs+"="+encodeURI(tLast["source"]);
+						url += "&"+mi.fm+"="+encodeURI(tLast["medium"]);
+						url += "&"+mi.ft+"="+encodeURI(tLast["term"]);
+						url += "&"+mi.fc+"="+encodeURI(tLast["content"]);
+						url += "&"+mi.fn+"="+encodeURI(tLast["campaign"]);
+
 						url += "&"+mi.ls+"="+encodeURI(tLast["source"]);
 						url += "&"+mi.lm+"="+encodeURI(tLast["medium"]);
 						url += "&"+mi.lt+"="+encodeURI(tLast["term"]);
 						url += "&"+mi.lc+"="+encodeURI(tLast["content"]);
 						url += "&"+mi.ln+"="+encodeURI(tLast["campaign"]);
+
+						url += "&"+mi.cs+"="+encodeURI(tLast["source"]);
+						url += "&"+mi.cm+"="+encodeURI(tLast["medium"]);
+						url += "&"+mi.ct+"="+encodeURI(tLast["term"]);
+						url += "&"+mi.cc+"="+encodeURI(tLast["content"]);
+						url += "&"+mi.cn+"="+encodeURI(tLast["campaign"]);
 
 						iframes[i].src = url;
 
