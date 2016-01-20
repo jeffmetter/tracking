@@ -136,20 +136,21 @@
 
 			// Populate Pardot form handler and landing page forms
 
-			function setValue(name, value, domain) {
+			function setValue(cfname, value, domain) {
 
 				var forms = document.getElementsByTagName("form");
 				for (var i = 0; i < forms.length; i++) {
 					if (forms[i].action && forms[i].action.indexOf(domain) > -1) {
 
 						// Form handler
-						var input = forms[i].getElementsByName(name);
+						// var input = forms[i].getElementsByName(name);
+						var input = document.forms[i].cfname;
 						for (var i = 0; i < input.length; i++) {
 							input[i].value = value;
 						}
 
 						// Landing page
-						var p = forms[i].getElementsByClassName(name);
+						var p = forms[i].getElementsByClassName(cfname);
 						for (var i = 0; i < p.length; i++) {
 							input = p[i].children;
 							input[0].value = value;
