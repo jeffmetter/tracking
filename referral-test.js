@@ -138,19 +138,25 @@
 
 			function setValue(name, value) {
 
-				// Form handler
-				var input = document.getElementsByName(name);
-				for (var i = 0; i < input.length; i++) {
-					input[i].value = value;
-				}
+				var forms = document.getElementsByTagName("form");
+				for (var i = 0; i < forms.length; i++) {
+					if (forms[i].action && forms[i].action.indexOf(domain) > -1) {
 
-				// Landing page
-				var p = document.getElementsByClassName(name);
-				for (var i = 0; i < p.length; i++) {
-					input = p[i].children;
-					input[0].value = value;
-				}
+						// Form handler
+						var input = forms[i].getElementsByName(name);
+						for (var i = 0; i < input.length; i++) {
+							input[i].value = value;
+						}
 
+						// Landing page
+						var p = forms[i].getElementsByClassName(name);
+						for (var i = 0; i < p.length; i++) {
+							input = p[i].children;
+							input[0].value = value;
+						}
+
+					}
+				}
 			}
 
 			setValue(mi.fs, tLast["source"]);
