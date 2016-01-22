@@ -1,3 +1,5 @@
+/* referral.js v1.0 */
+
 (function () {
 
 	function getHash(key) {
@@ -173,10 +175,20 @@
 			// Populate form inputs
 
 			function setValue(name, value) {
+
+				// Form handler
 				var input = document.getElementsByName(name);
 				for (var i = 0; i < input.length; i++) {
 					input[i].value = value;
 				}
+
+				// Landing page
+				var p = document.getElementsByClassName(name);
+				for (var i = 0; i < p.length; i++) {
+					input = p[i].children;
+					input[0].value = value;
+				}
+
 			}
 
 			setValue(mi.fs, tFirst["source"]);
