@@ -5,7 +5,7 @@
 (function(){
 s=document.createElement('script');
 s.async=1;
-s.src='//midigitalagency.github.io/tracking/pardot/1.0/referral.js';
+s.src='//midigitalagency.github.io/tracking/pardot/1.0/pardot-referral.js';
 n=document.getElementsByTagName('script')[0];
 n.parentNode.insertBefore(s,n);
 })();
